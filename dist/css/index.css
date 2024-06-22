@@ -547,6 +547,7 @@ main {
 }
 .booking-section .agenda_portrait-block {
   grid-area: agenda_portrait-block;
+  aspect-ratio: 1;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -563,12 +564,15 @@ main {
 }
 .booking-section .agenda-block {
   grid-area: agenda-block;
+  padding: 1.25rem 0;
+  aspect-ratio: 1;
   background-color: white;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.875rem;
   overflow: hidden;
 }
 .booking-section .agenda-block .agenda-carousel {
@@ -577,11 +581,11 @@ main {
   height: 100%;
 }
 .booking-section .agenda-block .agenda-date-block {
-  padding: 2.5rem;
+  padding: 0 2.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 3.125rem;
+  gap: 1.25rem;
+  width: 100%;
 }
 .booking-section .agenda-block .agenda-date {
   display: flex;
@@ -596,7 +600,7 @@ main {
 .booking-section .agenda-block .agenda-event {
   display: flex;
   flex-direction: column;
-  gap: 3.75rem;
+  gap: 1.25rem;
 }
 .booking-section .agenda-block .agenda-event .event-description {
   font-size: 1.25rem;
@@ -610,7 +614,7 @@ main {
   opacity: 0.6;
 }
 .booking-section .agenda-block .agenda-controls {
-  padding: 2.5rem;
+  padding: 0 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -708,6 +712,15 @@ main {
     display: grid;
     grid-template: "ticket-block reservation-block" 1fr "side_image-block side_image-block" 1fr "agenda_portrait-block agenda_portrait-block" 1fr "agenda-block agenda-block" 1fr "map_image-block map_image-block" 1fr "map_text-block map_text-block" 1fr/1fr 1fr;
   }
+  .agenda-block {
+    padding: 1.875rem 0;
+  }
+  .agenda-date-block {
+    gap: 1.875rem;
+  }
+  .agenda-event {
+    gap: 3.75rem;
+  }
 }
 @media (min-width: 80em) {
   .booking-section {
@@ -724,6 +737,9 @@ main {
   }
   .agenda_portrait-block {
     aspect-ratio: 1;
+  }
+  .agenda-date-block {
+    justify-content: space-between;
   }
   .agenda-block {
     aspect-ratio: 1;

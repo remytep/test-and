@@ -63,6 +63,7 @@
 	}
 	.agenda_portrait-block {
 		grid-area: agenda_portrait-block;
+		aspect-ratio: 1;
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
@@ -79,12 +80,15 @@
 	}
 	.agenda-block {
 		grid-area: agenda-block;
+		padding: toRem(20px) 0;
+		aspect-ratio: 1;
 		background-color: white;
 		width: 100%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		gap: toRem(30px);
 		overflow: hidden;
 		.agenda-carousel {
 			display: flex;
@@ -92,11 +96,11 @@
 			height: 100%;
 		}
 		.agenda-date-block {
-			padding: toRem(40px);
+			padding: 0 toRem(40px);
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
-			gap: toRem(50px);
+			gap: toRem(20px);
+			width: 100%;
 		}
 		.agenda-date {
 			display: flex;
@@ -111,7 +115,7 @@
 		.agenda-event {
 			display: flex;
 			flex-direction: column;
-			gap: toRem(60px);
+			gap: toRem(20px);
 			.event-description {
 				font-size: toRem(20px);
 				line-height: toRem(30px);
@@ -125,7 +129,7 @@
 			}
 		}
 		.agenda-controls {
-			padding: toRem(40px);
+			padding: 0 toRem(40px);
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -233,6 +237,15 @@
 			'map_text-block map_text-block' 1fr
 			/ 1fr 1fr;
 	}
+	.agenda-block {
+		padding: toRem(30px) 0;
+	}
+	.agenda-date-block {
+		gap: toRem(30px);
+	}
+	.agenda-event {
+		gap: toRem(60px);
+	}
 }
 @include breakpoint(xl) {
 	.booking-section {
@@ -257,6 +270,9 @@
 	}
 	.agenda_portrait-block {
 		aspect-ratio: 1;
+	}
+	.agenda-date-block {
+		justify-content: space-between;
 	}
 	.agenda-block {
 		aspect-ratio: 1;
