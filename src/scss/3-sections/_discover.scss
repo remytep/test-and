@@ -1,0 +1,174 @@
+.discover-background {
+	position: absolute;
+	z-index: -1;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+}
+
+.grid-layout {
+	width: 100%;
+	height: 100%;
+}
+
+.discover-section {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	padding: 0 toRem(60px);
+	.block {
+		padding: toRem(10px);
+	}
+	.discover-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: toRem(20px);
+		color: white;
+		font-size: toRem(16px);
+		line-height: toRem(30px);
+		letter-spacing: toRem(4px);
+		font-weight: 600;
+		border: solid 1px white;
+	}
+	.text-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: toRem(20px);
+		color: white;
+		font-size: toRem(16px);
+		line-height: toRem(26px);
+	}
+
+	.list-block {
+		color: white;
+		font-size: toRem(30px);
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		ul {
+			display: grid;
+			width: 100%;
+			grid-template-columns: 1fr auto;
+			grid-template-rows: repeat(2, 1fr);
+			gap: toRem(10px) toRem(0px);
+			align-items: center;
+		}
+	}
+	.information-block {
+		padding: 0;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		.information-block-text {
+			padding: toRem(60px) toRem(30px) toRem(30px) toRem(30px);
+			display: flex;
+			flex-direction: column;
+			gap: toRem(30px);
+			p {
+				line-height: toRem(30px);
+			}
+			span {
+				font-size: toRem(14px);
+				line-height: toRem(22px);
+				font-style: italic;
+				font-weight: 600;
+			}
+		}
+		.information-block-buttons {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			border-top: solid 0.5px rgb(0, 0, 0, 0.5);
+			a {
+				width: 100%;
+				height: 100%;
+				padding: toRem(50px);
+				font-size: toRem(14px);
+				line-height: toRem(30px);
+				font-weight: 600;
+				letter-spacing: toRem(4px);
+				display: flex;
+
+				align-items: center;
+				justify-content: center;
+				gap: toRem(5px);
+				svg {
+					max-height: toRem(16px);
+				}
+			}
+			.know-more-button {
+				color: rgb(var(--color-teal-medium));
+				border-bottom: solid 0.5px rgb(0, 0, 0, 0.5);
+			}
+			.reservation-button {
+				color: rgb(var(--color-red-medium));
+				border-bottom: solid 0.5px rgb(0, 0, 0, 0.5);
+			}
+		}
+	}
+}
+
+@include breakpoint(sm) {
+	.discover-section {
+		padding: 0 toRem(120px);
+	}
+}
+
+@include breakpoint(xl) {
+	.discover-section {
+		padding: 0;
+		display: grid;
+		grid-template:
+			'. . . discover-block discover-block text-block text-block .' 1fr
+			'. . . discover-block discover-block text-block text-block . ' 1fr
+			'. list-block list-block list-block . information-block information-block information-block' 1fr
+			'. list-block list-block list-block . information-block information-block information-block' 1fr
+			'. list-block list-block list-block . information-block information-block information-block' 1fr
+			'. . . . . . . .' 1fr
+			'. . . . . . . .' 1fr
+			/ 120px 1fr 1fr 1fr 1fr 1fr 1fr 120px;
+		.block {
+			padding: toRem(50px);
+		}
+		.discover-block {
+			grid-area: discover-block;
+			aspect-ratio: 1;
+		}
+		.text-block {
+			grid-area: text-block;
+			aspect-ratio: 1;
+		}
+
+		.list-block {
+			grid-area: list-block;
+			aspect-ratio: 2;
+			ul {
+				gap: toRem(40px) toRem(30px);
+			}
+		}
+		.information-block {
+			grid-area: information-block;
+			aspect-ratio: 1;
+			padding: 0;
+			.information-block-text {
+				padding: toRem(110px) toRem(50px) toRem(50px) toRem(50px);
+			}
+			.information-block-buttons {
+				flex-direction: row;
+				.know-more-button {
+					border-bottom: none;
+				}
+				.reservation-button {
+					border-bottom: none;
+					border-left: solid 0.5px rgb(0, 0, 0, 0.5);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+// ------------------------------------------------------------
+//
+// Base: Layout
+//
+// ------------------------------------------------------------
+@use 'sass:map';
+@use 'sass:math';
+@use '../0-settings/variables';
+@use '../0-settings/breakpoints';
+@use '../0-settings/functions' as *;
+
+html,
+body {
+	overscroll-behavior: none;
+}

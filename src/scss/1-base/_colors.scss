@@ -1,0 +1,26 @@
+// ------------------------------------------------------------
+//
+// Base: Colors
+//
+// ------------------------------------------------------------
+@use '../0-settings/variables';
+@use 'sass:meta';
+@use 'sass:color';
+
+@function toRGB($_hex) {
+	@return (color.red($_hex), color.green($_hex), color.blue($_hex));
+}
+
+@mixin loopColors($colors, $_prefix: '--color') {
+	@each $_color-name, $_color-value in $colors {
+		@if meta.type-of($_color-value) == 'color' {
+			#{$_prefix}-#{$_color-name}: #{toRGB($_color-value)};
+		} @else {
+			@include loopColors($_color-value, '--color-#{$_color-name}');
+		}
+	}
+}
+
+:root {
+	@include loopColors(variables.$colors);
+}

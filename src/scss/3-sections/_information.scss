@@ -1,0 +1,152 @@
+.information-background {
+	position: absolute;
+	z-index: -1;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+}
+
+.information-section {
+	position: relative;
+	display: grid;
+	grid-template:
+		'information-text-block' 1fr
+		'information-block' 1fr
+		'information-block-footer' 0.5fr
+		'.' 1fr / 1fr;
+	padding: 0 toRem(120px);
+	.information-text-block {
+		grid-area: information-text-block;
+		background-color: rgb(var(--color-teal-medium));
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: toRem(10px);
+		.information-text-title {
+			max-width: toRem(230px);
+			font-weight: 600;
+			font-size: toRem(16px);
+			letter-spacing: toRem(4px);
+			line-height: toRem(30px);
+			text-align: center;
+		}
+	}
+	.information-block {
+		grid-area: information-block;
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+		.information-nav {
+			padding: toRem(50px) toRem(30px);
+			ul {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				align-items: center;
+				color: rgb(var(--color-teal-medium));
+				font-weight: 600;
+				font-size: toRem(16px);
+				letter-spacing: toRem(3px);
+				line-height: toRem(30px);
+			}
+		}
+		.information-hours-tab {
+			padding: toRem(30px);
+			display: flex;
+			flex-direction: column;
+			gap: toRem(30px);
+			.reservation-link {
+				max-width: toRem(220px);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: toRem(4px);
+				color: white;
+				text-decoration: none;
+				background-color: rgb(var(--color-teal-medium));
+				border-radius: toRem(90px);
+				height: toRem(54px);
+				span {
+					font-weight: 600;
+					font-size: toRem(14px);
+					letter-spacing: toRem(4px);
+					line-height: toRem(30px);
+				}
+				svg {
+					aspect-ratio: 1;
+					max-height: toRem(16px);
+				}
+			}
+		}
+	}
+	.information-footer {
+		grid-area: information-block-footer;
+		background-color: white;
+		ul {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			border-top: solid 1px rgb(0, 0, 0, 0.5);
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				gap: toRem(15px);
+				padding: toRem(30px);
+				font-weight: 600;
+				font-size: toRem(14px);
+				letter-spacing: toRem(3px);
+				line-height: toRem(30px);
+				&:not(:last-child) {
+					border-bottom: solid 1px rgb(0, 0, 0, 0.5);
+				}
+			}
+			.information-contact {
+				color: rgb(var(--color-red-medium));
+			}
+			.information-telephone,
+			.information-site {
+				color: rgb(var(--color-teal-medium));
+			}
+		}
+	}
+}
+
+@include breakpoint(xl) {
+	.information-section {
+		grid-template:
+			'information-text-block information-text-block information-block information-block information-block information-block' 1fr
+			'information-text-block information-text-block information-block information-block information-block information-block' 1fr
+			'. . information-block-footer information-block-footer information-block-footer information-block-footer' 0.5fr
+			'. . . . . .' 3fr
+			'logo logo . . . .' 0.5fr
+			'logo logo nav nav nav nav' 0.5fr
+			'logo logo contact contact follow follow' 1fr
+			'boom boom agency agency agency agency' 1fr
+			/ 1fr 1fr 1fr 1fr 1fr 1fr;
+		.information-text-block {
+			aspect-ratio: 1;
+		}
+		.information-block {
+			aspect-ratio: 2;
+		}
+
+		.information-footer {
+			ul {
+				flex-direction: row;
+				li {
+					height: 100%;
+					&:not(:last-child) {
+						border-bottom: none;
+						border-right: solid 1px rgb(0, 0, 0, 0.5);
+					}
+				}
+			}
+		}
+	}
+}

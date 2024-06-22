@@ -1,0 +1,195 @@
+.booking-background {
+	position: absolute;
+	z-index: -1;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+}
+
+.booking-section {
+	position: relative;
+	padding: toRem(0px) toRem(60px);
+	display: flex;
+	flex-direction: column;
+	.ticket-block {
+		grid-area: ticket-block;
+		background-color: rgb(var(--color-teal-medium));
+		color: white;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: toRem(40px);
+		img {
+			width: 100%;
+			height: 100%;
+			max-width: toRem(100px);
+			max-height: toRem(100px);
+		}
+	}
+	.reservation-block {
+		grid-area: reservation-block;
+		position: relative;
+		background-color: rgb(var(--color-teal-medium));
+		color: white;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		font-size: toRem(30px);
+		line-height: toRem(38px);
+		padding: toRem(40px);
+		width: 100%;
+		height: 100%;
+		.ico-arrow {
+			position: absolute;
+			bottom: toRem(40px);
+			right: toRem(40px);
+		}
+	}
+	.side_image-block {
+		grid-area: side_image-block;
+		width: 100%;
+		height: 100%;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.agenda_portrait-block {
+		grid-area: agenda_portrait-block;
+		width: 100%;
+		height: 100%;
+		img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.agenda-block {
+		grid-area: agenda-block;
+		background-color: white;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: toRem(20px);
+		padding: toRem(40px);
+		.agenda-date {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.event-date {
+				font-weight: 700;
+				font-size: toRem(16px);
+				color: rgb(var(--color-red-medium));
+			}
+		}
+		.agenda-event {
+			display: flex;
+			flex-direction: column;
+			gap: toRem(40px);
+			.event-description {
+				font-size: toRem(20px);
+				line-height: toRem(30px);
+			}
+			.event-target {
+				font-style: italic;
+				font-size: toRem(14px);
+				line-height: toRem(30px);
+				color: rgb(var(--color-gray-dark));
+				opacity: 0.6;
+			}
+		}
+	}
+	.map_image-block {
+		grid-area: map_image-block;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	.map_text-block {
+		grid-area: map_text-block;
+		padding: toRem(40px);
+		background-color: rgb(var(--color-red-medium));
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		gap: toRem(40px);
+		.map-title {
+			font-size: toRem(16px);
+			letter-spacing: toRem(3px);
+			font-weight: 600;
+		}
+		.map-address {
+			font-size: toRem(20px);
+			line-height: toRem(30px);
+		}
+		.map-hours {
+			font-size: toRem(16px);
+			font-weight: 600;
+			line-height: toRem(25px);
+		}
+	}
+}
+
+@include breakpoint(sm) {
+	.booking-section {
+		padding: toRem(0px) toRem(120px);
+		display: grid;
+		grid-template:
+			'ticket-block reservation-block' 1fr
+			'side_image-block side_image-block' 1fr
+			'agenda_portrait-block agenda_portrait-block' 1fr
+			'agenda-block agenda-block' 1fr
+			'map_image-block map_image-block' 1fr
+			'map_text-block map_text-block' 1fr
+			/ 1fr 1fr;
+	}
+}
+@include breakpoint(xl) {
+	.booking-section {
+		grid-template:
+			'ticket-block ticket-block reservation-block reservation-block . .' 1fr
+			'ticket-block ticket-block reservation-block reservation-block side_image-block side_image-block' 1fr
+			'. agenda_portrait-block agenda_portrait-block agenda_portrait-block side_image-block side_image-block' 1fr
+			'. agenda_portrait-block agenda_portrait-block agenda_portrait-block agenda-block agenda-block' 1fr
+			'. agenda_portrait-block agenda_portrait-block agenda_portrait-block agenda-block agenda-block' 1fr
+			'map_image-block map_image-block map_image-block map_text-block map_text-block .' 1fr
+			'map_image-block map_image-block map_image-block map_text-block map_text-block .' 1fr
+			/ 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+	.ticket-block {
+		aspect-ratio: 1;
+	}
+	.reservation-block {
+		aspect-ratio: 1;
+	}
+	.side_image-block {
+		aspect-ratio: 1;
+	}
+	.agenda_portrait-block {
+		aspect-ratio: 1;
+	}
+	.agenda-block {
+		aspect-ratio: 1;
+	}
+	.map_image-block {
+		aspect-ratio: 2;
+	}
+	.map_text-block {
+		aspect-ratio: 1;
+	}
+}

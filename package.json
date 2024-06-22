@@ -1,0 +1,23 @@
+{
+	"name": "and-agency",
+	"version": "1.0.0",
+	"description": "Test technique",
+	"main": "index.js",
+	"scripts": {
+		"dev": "gulp"
+	},
+	"author": "Your Name",
+	"license": "ISC",
+	"devDependencies": {
+		"browser-sync": "^3.0.2",
+		"gulp": "^5.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-eslint": "^6.0.0",
+		"gulp-imagemin": "^9.1.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-uglify": "^3.0.2",
+		"imagemin-mozjpeg": "^10.0.0",
+		"imagemin-pngquant": "^10.0.0",
+		"sass": "^1.77.6"
+	}
+}

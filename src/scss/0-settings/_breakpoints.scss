@@ -1,0 +1,40 @@
+// ------------------------------------------------------------
+//
+// Breakpoints
+//
+// ------------------------------------------------------------
+@use 'sass:map';
+@use '../0-settings/variables';
+@use './functions' as *;
+
+@mixin min-width($_breakpoint) {
+	$value: map.get(
+		$map: variables.$breakpoints,
+		$key: $_breakpoint,
+	);
+	@media (min-width: em($value, 16px)) {
+		@content;
+	}
+}
+
+@mixin max-width($_breakpoint) {
+	$value: map.get(
+		$map: variables.$breakpoints,
+		$key: $_breakpoint,
+	);
+	@media not all and (min-width: em($value, 16px)) {
+		@content;
+	}
+}
+
+@mixin breakpoint($_breakpoint, $_decending: false) {
+	@if ($_decending) {
+		@include max-width($_breakpoint) {
+			@content;
+		}
+	} @else {
+		@include min-width($_breakpoint) {
+			@content;
+		}
+	}
+}

@@ -1,0 +1,170 @@
+// ------------------------------------------------------------
+//
+// Functions
+//
+// ------------------------------------------------------------
+@use './core-variables' as core;
+@use 'sass:math';
+
+// -------------------------
+//
+// Maths
+//
+// -------------------------
+
+@function to-fixed($_value, $_pow: 2) {
+	$_pow: math.pow(10, $_pow);
+	@return math.div(math.round($_value * $_pow), $_pow);
+}
+
+// -------------------------
+//
+// Units transforms
+//
+// -------------------------
+
+@function strip-unit($_number) {
+	@if type-of($_number) == 'number' and not unitless($_number) {
+		@return math.div($_number, ($_number * 0 + 1));
+	}
+	@return $number;
+}
+
+/// Converts the given pixel value to its EM quivalent.
+///
+/// @param  {number} $_size - The pixel value to convert.
+/// @param  {number} $_base [$font-size] - The assumed base font size.
+/// @return {number} Scalable pixel value in EMs.
+///
+@function em($_size, $_base: core.$px-base) {
+	@if (type-of($_size) ==number) {
+		@if (unit($_size) != 'px') {
+			@error "`#{$_size}` needs to be a pixel value.";
+		}
+	} @else {
+		@error "`#{$_size}` needs to be a number.";
+	}
+
+	@if (type-of($_base) ==number) {
+		@if (unit($_base) != 'px') {
+			@error "`#{$_base}` needs to be a pixel value.";
+		}
+	} @else {
+		@error "`#{$_base}` needs to be a number.";
+	}
+
+	@return math.div($_size, $_base) * 1em;
+}
+
+/// Converts the given pixel value to its REM quivalent.
+///
+/// @param  {number} $_size - The pixel value to convert.
+/// @param  {number} $_base [$font-size] - The assumed base font size.
+/// @return {number} Scalable pixel value in REMs.
+///
+@function toRem($_size, $_base: core.$px-base) {
+	@if (type-of($_size) == number) {
+		@if (unit($_size) == 'rem') {
+			$_size: strip-unit($_size) * core.$px-base;
+		} @else if(unit($_size) != 'px') {
+			@error '`#{$_size}` needs to be a pixel value or a rem value.';
+		}
+	} @else {
+		@error "`#{$_size}` needs to be a number.";
+	}
+
+	@if (type-of($_base) == number) {
+		@if (unit($_base) == 'rem') {
+			$_base: strip-unit($_base) * core.$px-base;
+		} @else if(unit($_base) != 'px') {
+			@error '`#{$_base}` needs to be a pixel value or a rem value.';
+		}
+	} @else {
+		@error "`#{$_base}` needs to be a number.";
+	}
+
+	@return math.div($_size, $_base) * 1rem;
+}
+
+/// Converts the given pixel value to its REM quivalent.
+///
+/// @param  {number} $_size - The pixel value to convert.
+/// @param  {number} $_base [$font-size] - The assumed base font size.
+/// @return {number} Scalable pixel value in REMs.
+///
+@function vw($_size, $_base) {
+	@return to-fixed(math.div($_size, list.nth($_base, 1)) * 100vw);
+}
+
+// -------------------------
+//
+// String
+//
+// -------------------------
+@function str-replace($_string, $_search, $_replace: '') {
+	$index: str-index($_string, $_search);
+	@if $index {
+		@return str-slice($_string, 1, $index - 1) + $_replace +
+			str-replace(
+				str-slice($_string, $index + str-length($_search)),
+				$_search,
+				$_replace
+			);
+	}
+	@return $_string;
+}
+
+@function trim($_string) {
+	$array: string.split($_string, ' ');
+	$result: '';
+	@each $_value in $array {
+		$result: #{$result}#{$_value};
+	}
+	@return $result;
+}
+
+// -------------------------
+//
+// Grid
+//
+// -------------------------
+@function col($_column-span: 1) {
+	@return calc(#{$_column-span} * var(--grid-column-width));
+}
+
+// -------------------------
+//
+// Gradients
+//
+// -------------------------
+@function sineInOut($value) {
+	@return -0.5 * (math.cos(math.$pi * $value) - 1);
+}
+
+@function smooth-gradient(
+	$startColor: black,
+	$endColor: transparent,
+	$direction: to bottom,
+	$steps: 10
+) {
+	$stops: ();
+	$size: $steps - 1;
+
+	@for $i from 0 through $size {
+		$x: math.div($i, $size);
+		$mix: 1 - sineInOut($x);
+		@if ($mix == 0) {
+			$mix: 0.001;
+		}
+
+		$stopPercentage: percentage(to-fixed($x, 4));
+		$mixPercentage: percentage(to-fixed($mix, 4));
+
+		$colormix: color-mix(in srgb, $startColor $mixPercentage, $endColor)
+			$stopPercentage;
+
+		$stops: append($stops, $colormix, comma);
+	}
+
+	@return linear-gradient($direction, $stops);
+}

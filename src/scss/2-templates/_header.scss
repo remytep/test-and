@@ -1,0 +1,65 @@
+@use '0-settings/functions';
+.page-header {
+	width: 100vw;
+	z-index: 10;
+	padding: 0px toRem(60px);
+	position: absolute;
+	.header-nav {
+		position: sticky;
+		font-size: toRem(10px);
+		color: white;
+		ul {
+			height: toRem(40px);
+			padding: toRem(25px) toRem(0px);
+			display: flex;
+			align-items: center;
+			gap: toRem(15px);
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.header-language_selector {
+				gap: toRem(5px);
+				font-weight: 700;
+				letter-spacing: toRem(4px);
+			}
+			.header-search {
+				gap: toRem(5px);
+				letter-spacing: toRem(2px);
+			}
+			.header-login {
+				gap: toRem(5px);
+				.login-link {
+					text-decoration: underline;
+					text-underline-offset: toRem(3px);
+					text-overflow: ellipsis;
+				}
+			}
+		}
+	}
+}
+
+@include breakpoint(sm) {
+	.page-header {
+		padding: 0px toRem(120px);
+		.header-nav {
+			gap: toRem(40px);
+			.header-language_selector {
+				gap: toRem(15px);
+				font-weight: 700;
+			}
+			.header-search {
+				gap: toRem(9px);
+				letter-spacing: toRem(2px);
+			}
+			.header-login {
+				gap: toRem(9px);
+				.login-link {
+					text-decoration: underline;
+					text-underline-offset: toRem(3px);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+// ------------------------------------------------------------
+//
+// Settings
+//
+// ------------------------------------------------------------
+@import '0-settings/reset';
+@import '0-settings/default';
+@import '0-settings/functions';
+@import '0-settings/variables';
+@import '0-settings/breakpoints';
+// ------------------------------------------------------------
+//
+// Base
+//
+// ------------------------------------------------------------
+@import '1-base/colors';
+@import '1-base/layout';
+// ------------------------------------------------------------
+//
+// Templates
+//
+// ------------------------------------------------------------
+@import '2-templates/global';
+@import '2-templates/header';
+@import '2-templates/sidemenu';
+@import '2-templates/footer';
+
+// ------------------------------------------------------------
+//
+// Sections
+//
+// ------------------------------------------------------------
+@import '3-sections/hero';
+@import '3-sections/booking';
+@import '3-sections/discover';
+@import '3-sections/media';
+@import '3-sections/information';

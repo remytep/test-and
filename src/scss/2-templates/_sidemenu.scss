@@ -1,0 +1,49 @@
+@use '0-settings/functions';
+
+.sidemenu {
+	position: absolute;
+	top: toRem(50px);
+	right: 0;
+	padding: toRem(10px);
+	ul {
+		position: sticky;
+		display: grid;
+		grid-template-rows: toRem(40px) toRem(40px) toRem(40px);
+		grid-template-columns: toRem(40px);
+		padding: 0;
+		li {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.burger-btn {
+			border: solid toRem(2px) white;
+		}
+
+		.ticket-btn {
+			background-color: rgb(var(--color-teal-medium));
+		}
+
+		.people-btn {
+			background-color: white;
+		}
+	}
+}
+
+@include breakpoint(sm) {
+	.sidemenu {
+		top: toRem(90px);
+		padding: toRem(30px);
+		ul {
+			grid-template-rows: toRem(80px) toRem(80px) toRem(80px);
+			grid-template-columns: toRem(80px);
+		}
+	}
+}
+@include breakpoint(xl) {
+	.sidemenu {
+		top: toRem(120px);
+		padding: toRem(40px);
+	}
+}
