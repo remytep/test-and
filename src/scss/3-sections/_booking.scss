@@ -24,7 +24,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: toRem(40px);
-		img {
+		svg {
 			width: 100%;
 			height: 100%;
 			max-width: toRem(100px);
@@ -46,7 +46,7 @@
 		padding: toRem(40px);
 		width: 100%;
 		height: 100%;
-		.ico-arrow {
+		svg {
 			position: absolute;
 			bottom: toRem(40px);
 			right: toRem(40px);
@@ -71,8 +71,10 @@
 			display: flex;
 			width: 100%;
 			height: 100%;
+			aspect-ratio: 1;
 		}
 		img {
+			aspect-ratio: 1;
 			object-fit: cover;
 			width: 100%;
 			height: 100%;

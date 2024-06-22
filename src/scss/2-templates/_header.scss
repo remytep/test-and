@@ -53,7 +53,9 @@
 	.page-header {
 		padding: 0px toRem(120px);
 		.header-nav {
-			gap: toRem(40px);
+			ul {
+				gap: toRem(40px);
+			}
 			.header-language_selector {
 				gap: toRem(15px);
 			}
