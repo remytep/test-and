@@ -1,172 +1,32 @@
 .page-footer {
-	display: grid;
-	grid-template:
-		'logo logo' 0.5fr
-		'nav nav' 1fr
-		'contact  follow' 1fr
-		'boom agency' 1fr
-		/ 1fr 1fr;
-	padding: 0 toRem(60px);
-	background-color: rgb(var(--color-gray-light));
-	.footer-logo {
-		grid-area: logo;
-		background-color: white;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: toRem(40px) toRem(20px);
-		transform: scale(1.5);
-	}
-
-	.footer-nav {
-		grid-area: nav;
+	nav {
+		padding-top: toRem(30px);
+		padding-bottom: toRem(10px);
 		background-color: rgb(var(--color-gray-light));
-		border: solid 0.6px rgb(0, 0, 0, 0.1);
-		border-top: none;
-		ul {
-			height: 100%;
+		.footer-pagelinks {
 			display: flex;
-			justify-content: space-between;
-			align-items: flex-end;
-			padding: 0 toRem(20px) toRem(20px) toRem(20px);
-			gap: toRem(30px);
-			li {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-		}
-		.footer-language_selector {
-			gap: toRem(10px);
-			font-weight: 700;
-			letter-spacing: toRem(4px);
-			svg {
-				width: toRem(1px);
-			}
-		}
-		.footer-search {
-			color: black;
-			letter-spacing: toRem(2px);
-			position: relative;
-			min-width: toRem(150px);
-			label {
-				position: absolute;
-				left: 0;
-				letter-spacing: toRem(2px);
-				opacity: 0.5;
-			}
-			input {
-				width: 100%;
-				border: none;
-				background-color: rgb(var(--color-gray-light));
-				border-bottom: solid 1px #1e1e1e;
-				padding-bottom: toRem(10px);
-			}
-			.search-icon {
-				position: absolute;
-				right: 0;
-			}
-		}
-	}
-	.footer-contact,
-	.footer-follow {
-		color: rgb(var(--color-red-medium));
-		border: solid 0.6px rgb(0, 0, 0, 0.1);
-		border-top: none;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		h4 {
-			font-size: toRem(14px);
-			line-height: toRem(30px);
-			letter-spacing: toRem(3px);
-			font-weight: 600;
-		}
-		span {
-			font-weight: toRem(20px);
-			line-height: toRem(30px);
-			font-weight: 700;
-		}
-	}
-	.footer-contact {
-		grid-area: contact;
-		border-right: none;
-	}
-
-	.footer-follow {
-		grid-area: follow;
-		.follow-icons {
-			display: flex;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			gap: toRem(15px);
+			gap: toRem(30px);
+			font-size: toRem(14px);
+			line-height: toRem(30px);
 		}
 	}
-	.footer-boom {
-		grid-area: boom;
+	.footer-copyright {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: toRem(30px);
-		gap: toRem(30px);
-		p {
-			font-size: toRem(14px);
-			line-height: toRem(20px);
-			letter-spacing: toRem(3px);
-			font-weight: 600;
-		}
-		border: solid 0.6px rgb(0, 0, 0, 0.1);
-		border-top: none;
-	}
-	.footer-agencies {
-		grid-area: agency;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: toRem(30px);
-		p {
-			font-size: toRem(14px);
-			line-height: toRem(20px);
-			letter-spacing: toRem(3px);
-			font-weight: 600;
-			max-width: toRem(200px);
-		}
-		border: solid 0.6px rgb(0, 0, 0, 0.1);
-		border-top: none;
-		border-left: none;
+		padding-top: toRem(50px);
+		padding-bottom: toRem(30px);
 	}
 }
 
-@include breakpoint(md) {
+@include breakpoint(sm) {
 	.page-footer {
-		.footer-nav {
-			.footer-search {
-				min-width: toRem(300px);
-			}
-		}
-	}
-}
-@include breakpoint(xl) {
-	.page-footer {
-		padding: 0 toRem(120px);
-		grid-template:
-			// 'logo logo . . . .' 0.5fr
-
-			'logo logo nav nav nav nav' 0.5fr
-			'logo logo contact contact follow follow' 1fr
-			'boom boom agency agency agency agency' 1fr
-			/ 1fr 1fr 1fr 1fr 1fr 1fr;
-		.footer-logo {
-			aspect-ratio: 1;
-		}
-		.footer-nav {
-			ul {
-				padding: 0 toRem(40px) toRem(20px) toRem(40px);
-				gap: toRem(150px);
-			}
-			.footer-search {
-				min-width: toRem(400px);
+		nav {
+			.footer-pagelinks {
+				flex-direction: row;
 			}
 		}
 	}

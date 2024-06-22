@@ -1,6 +1,7 @@
 @use '0-settings/functions';
 .page-header {
 	width: 100vw;
+	height: 100%;
 	z-index: 10;
 	padding: 0px toRem(60px);
 	position: absolute;
@@ -9,7 +10,7 @@
 		font-size: toRem(10px);
 		color: white;
 		ul {
-			height: toRem(40px);
+			height: 100%;
 			padding: toRem(25px) toRem(0px);
 			display: flex;
 			align-items: center;
@@ -21,12 +22,20 @@
 			}
 			.header-language_selector {
 				gap: toRem(5px);
-				font-weight: 700;
 				letter-spacing: toRem(4px);
+
+				a.selected {
+					font-weight: 700;
+				}
 			}
 			.header-search {
-				gap: toRem(5px);
-				letter-spacing: toRem(2px);
+				a {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: toRem(5px);
+					letter-spacing: toRem(2px);
+				}
 			}
 			.header-login {
 				gap: toRem(5px);
@@ -47,7 +56,6 @@
 			gap: toRem(40px);
 			.header-language_selector {
 				gap: toRem(15px);
-				font-weight: 700;
 			}
 			.header-search {
 				gap: toRem(9px);

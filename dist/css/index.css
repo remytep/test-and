@@ -30,6 +30,7 @@ svg {
 a {
   color: inherit;
   cursor: pointer;
+  text-decoration: none;
 }
 
 input,
@@ -78,6 +79,7 @@ main {
 
 .page-header {
   width: 100vw;
+  height: 100%;
   z-index: 10;
   padding: 0px 3.75rem;
   position: absolute;
@@ -88,7 +90,7 @@ main {
   color: white;
 }
 .page-header .header-nav ul {
-  height: 2.5rem;
+  height: 100%;
   padding: 1.5625rem 0rem;
   display: flex;
   align-items: center;
@@ -101,10 +103,15 @@ main {
 }
 .page-header .header-nav ul .header-language_selector {
   gap: 0.3125rem;
-  font-weight: 700;
   letter-spacing: 0.25rem;
 }
-.page-header .header-nav ul .header-search {
+.page-header .header-nav ul .header-language_selector a.selected {
+  font-weight: 700;
+}
+.page-header .header-nav ul .header-search a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.3125rem;
   letter-spacing: 0.125rem;
 }
@@ -126,7 +133,6 @@ main {
   }
   .page-header .header-nav .header-language_selector {
     gap: 0.9375rem;
-    font-weight: 700;
   }
   .page-header .header-nav .header-search {
     gap: 0.5625rem;
@@ -140,26 +146,96 @@ main {
     text-underline-offset: 0.1875rem;
   }
 }
+.popin {
+  position: fixed;
+  display: flex;
+  top: 7.5rem;
+  right: 1.25rem;
+  z-index: 10;
+}
+.popin[data-open=false] {
+  pointer-events: none;
+}
+.popin[data-open=false] .sidemenu {
+  pointer-events: all;
+}
+.popin[data-open=false] .burger-btn {
+  transition: all 0.5s linear;
+}
+.popin[data-open=false] .burger-btn .sidemenu-btn svg {
+  fill: white;
+}
+.popin[data-open=false] .burger-btn .sidemenu-btn .ico-burger-top {
+  transition: all 0.5s linear;
+  transform-origin: 0 50%;
+  transform: rotate(0deg) translateX(0);
+}
+.popin[data-open=false] .burger-btn .sidemenu-btn .ico-burger-middle {
+  opacity: 1;
+}
+.popin[data-open=false] .burger-btn .sidemenu-btn .ico-burger-bottom {
+  transition: all 0.5s linear;
+  transform-origin: 0 50%;
+  transform: rotate(0deg) translateX(0);
+}
+.popin[data-open=true] {
+  pointer-events: all;
+}
+.popin[data-open=true] .burger-btn {
+  transition: all 0.5s linear;
+  background-color: white;
+}
+.popin[data-open=true] .burger-btn .sidemenu-btn svg {
+  fill: rgb(var(--color-teal-medium));
+}
+.popin[data-open=true] .burger-btn .sidemenu-btn .ico-burger-top {
+  transition: all 0.5s linear;
+  transform-origin: 0 50%;
+  transform: rotate(45deg) translateX(-10%);
+}
+.popin[data-open=true] .burger-btn .sidemenu-btn .ico-burger-middle {
+  opacity: 0;
+}
+.popin[data-open=true] .burger-btn .sidemenu-btn .ico-burger-bottom {
+  transition: all 0.5s linear;
+  transform-origin: 0 50%;
+  transform: rotate(-45deg) translateX(-10%);
+}
+
+@media (min-width: 40em) {
+  .popin {
+    top: 12.5rem;
+    right: 2.5rem;
+  }
+}
+@media (min-width: 80em) {
+  .popin {
+    top: 10rem;
+    right: 2.5rem;
+  }
+}
 .sidemenu {
-  position: absolute;
-  top: 3.125rem;
-  right: 0;
-  padding: 0.625rem;
+  display: fixed;
+  z-index: 10;
 }
 .sidemenu ul {
-  position: sticky;
   display: grid;
   grid-template-rows: 2.5rem 2.5rem 2.5rem;
   grid-template-columns: 2.5rem;
   padding: 0;
 }
-.sidemenu ul li {
+.sidemenu ul li .sidemenu-btn {
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .sidemenu ul .burger-btn {
+  transition: all;
   border: solid 0.125rem white;
+  fill: white;
 }
 .sidemenu ul .ticket-btn {
   background-color: rgb(var(--color-teal-medium));
@@ -171,7 +247,6 @@ main {
 @media (min-width: 40em) {
   .sidemenu {
     top: 5.625rem;
-    padding: 1.875rem;
   }
   .sidemenu ul {
     grid-template-rows: 5rem 5rem 5rem;
@@ -181,167 +256,119 @@ main {
 @media (min-width: 80em) {
   .sidemenu {
     top: 7.5rem;
-    padding: 2.5rem;
   }
 }
-.page-footer {
+.popin-menu {
+  position: relative;
   display: grid;
-  grid-template: "logo logo" 0.5fr "nav nav" 1fr "contact  follow" 1fr "boom agency" 1fr/1fr 1fr;
-  padding: 0 3.75rem;
-  background-color: rgb(var(--color-gray-light));
+  grid-template: ".  main" 1fr "left main" 3fr/1fr 1fr;
+  height: 60vh;
+  width: calc(100vw - 120px);
+  background-color: clear;
+  transform-origin: top right;
+  cursor: url(/dist/images/cursor.png) 30 30, auto;
 }
-.page-footer .footer-logo {
-  grid-area: logo;
-  background-color: white;
+.popin-menu a,
+.popin-menu a:hover {
+  cursor: url(/dist/images/cursor.png) 30 30, auto;
+}
+.popin-menu .left-menu {
+  grid-area: left;
+  background-color: rgb(var(--color-teal-medium));
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.875rem;
+  padding: 5rem 2.5rem;
+}
+.popin-menu .left-menu nav ul {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2.5rem 1.25rem;
-  transform: scale(1.5);
-}
-.page-footer .footer-nav {
-  grid-area: nav;
-  background-color: rgb(var(--color-gray-light));
-  border: solid 0.6px rgba(0, 0, 0, 0.1);
-  border-top: none;
-}
-.page-footer .footer-nav ul {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 1.25rem 1.25rem 1.25rem;
+  flex-direction: column;
   gap: 1.875rem;
 }
-.page-footer .footer-nav ul li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.page-footer .footer-nav .footer-language_selector {
-  gap: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.25rem;
-}
-.page-footer .footer-nav .footer-language_selector svg {
-  width: 0.0625rem;
-}
-.page-footer .footer-nav .footer-search {
+.popin-menu .left-menu nav ul li:hover {
   color: black;
+}
+.popin-menu .main-menu {
+  padding: 2.5rem 1.25rem;
+  grid-area: main;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.popin-menu .main-menu .vertical-menu {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 4.25rem;
+}
+.popin-menu .main-menu .vertical-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9375rem;
+}
+.popin-menu .main-menu .vertical-menu ul li:hover {
+  color: rgb(var(--color-teal-medium));
+}
+.popin-menu .main-menu .bottom-menu {
+  font-size: 0.875rem;
+  line-height: 1.875rem;
   letter-spacing: 0.125rem;
-  position: relative;
-  min-width: 9.375rem;
 }
-.page-footer .footer-nav .footer-search label {
-  position: absolute;
-  left: 0;
-  letter-spacing: 0.125rem;
-  opacity: 0.5;
-}
-.page-footer .footer-nav .footer-search input {
-  width: 100%;
-  border: none;
-  background-color: rgb(var(--color-gray-light));
-  border-bottom: solid 1px #1e1e1e;
-  padding-bottom: 0.625rem;
-}
-.page-footer .footer-nav .footer-search .search-icon {
-  position: absolute;
-  right: 0;
-}
-.page-footer .footer-contact,
-.page-footer .footer-follow {
-  color: rgb(var(--color-red-medium));
-  border: solid 0.6px rgba(0, 0, 0, 0.1);
-  border-top: none;
+.popin-menu .main-menu .bottom-menu ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-.page-footer .footer-contact h4,
-.page-footer .footer-follow h4 {
-  font-size: 0.875rem;
-  line-height: 1.875rem;
-  letter-spacing: 0.1875rem;
-  font-weight: 600;
-}
-.page-footer .footer-contact span,
-.page-footer .footer-follow span {
-  font-weight: 1.25rem;
-  line-height: 1.875rem;
-  font-weight: 700;
-}
-.page-footer .footer-contact {
-  grid-area: contact;
-  border-right: none;
-}
-.page-footer .footer-follow {
-  grid-area: follow;
-}
-.page-footer .footer-follow .follow-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.9375rem;
-}
-.page-footer .footer-boom {
-  grid-area: boom;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.875rem;
   gap: 1.875rem;
-  border: solid 0.6px rgba(0, 0, 0, 0.1);
-  border-top: none;
 }
-.page-footer .footer-boom p {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  letter-spacing: 0.1875rem;
-  font-weight: 600;
-}
-.page-footer .footer-agencies {
-  grid-area: agency;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.875rem;
-  border: solid 0.6px rgba(0, 0, 0, 0.1);
-  border-top: none;
-  border-left: none;
-}
-.page-footer .footer-agencies p {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  letter-spacing: 0.1875rem;
-  font-weight: 600;
-  max-width: 12.5rem;
+.popin-menu .main-menu .bottom-menu ul li:hover {
+  color: rgb(var(--color-teal-medium));
 }
 
-@media (min-width: 48em) {
-  .page-footer .footer-nav .footer-search {
-    min-width: 18.75rem;
+@media (min-width: 40em) {
+  .popin-menu {
+    width: calc(100vw - 240px);
+    grid-template: ". main" 1fr "left main" 8fr/1fr 3fr;
+  }
+  .popin-menu .main-menu {
+    padding: 6.25rem 3.125rem;
+  }
+  .popin-menu .main-menu .bottom-menu ul {
+    flex-direction: row;
   }
 }
-@media (min-width: 80em) {
-  .page-footer {
-    padding: 0 7.5rem;
-    grid-template: "logo logo nav nav nav nav" 0.5fr "logo logo contact contact follow follow" 1fr "boom boom agency agency agency agency" 1fr/1fr 1fr 1fr 1fr 1fr 1fr;
-  }
-  .page-footer .footer-logo {
-    aspect-ratio: 1;
-  }
-  .page-footer .footer-nav ul {
-    padding: 0 2.5rem 1.25rem 2.5rem;
-    gap: 9.375rem;
-  }
-  .page-footer .footer-nav .footer-search {
-    min-width: 25rem;
+.page-footer nav {
+  padding-top: 1.875rem;
+  padding-bottom: 0.625rem;
+  background-color: rgb(var(--color-gray-light));
+}
+.page-footer nav .footer-pagelinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.875rem;
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+}
+.page-footer .footer-copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3.125rem;
+  padding-bottom: 1.875rem;
+}
+
+@media (min-width: 40em) {
+  .page-footer nav .footer-pagelinks {
+    flex-direction: row;
   }
 }
 .hero-background {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: -1;
   object-fit: cover;
   object-position: center;
@@ -351,6 +378,8 @@ main {
 
 .grid-layout {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
@@ -454,6 +483,8 @@ main {
 }
 .booking-background {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: -1;
   object-fit: cover;
   object-position: center;
@@ -518,6 +549,12 @@ main {
   grid-area: agenda_portrait-block;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+.booking-section .agenda_portrait-block .agenda-carousel-image {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 .booking-section .agenda_portrait-block img {
   object-fit: cover;
@@ -532,8 +569,19 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.25rem;
+  overflow: hidden;
+}
+.booking-section .agenda-block .agenda-carousel {
+  display: flex;
+  width: 300%;
+  height: 100%;
+}
+.booking-section .agenda-block .agenda-date-block {
   padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3.125rem;
 }
 .booking-section .agenda-block .agenda-date {
   display: flex;
@@ -548,7 +596,7 @@ main {
 .booking-section .agenda-block .agenda-event {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3.75rem;
 }
 .booking-section .agenda-block .agenda-event .event-description {
   font-size: 1.25rem;
@@ -560,6 +608,61 @@ main {
   line-height: 1.875rem;
   color: rgb(var(--color-gray-dark));
   opacity: 0.6;
+}
+.booking-section .agenda-block .agenda-controls {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.booking-section .agenda-block .agenda-controls .agenda-radio {
+  display: flex;
+  gap: 1.25rem;
+}
+.booking-section .agenda-block .agenda-controls .agenda-radio input[type=radio] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  border-color: black;
+}
+.booking-section .agenda-block .agenda-controls .agenda-radio input[type=radio]::before {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background 0.2s;
+  border-color: black;
+}
+.booking-section .agenda-block .agenda-controls .agenda-radio input[type=radio]:checked {
+  border-color: black;
+}
+.booking-section .agenda-block .agenda-controls .agenda-radio input[type=radio]:checked::before {
+  background: black;
+}
+.booking-section .agenda-block .agenda-controls .agenda-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9375rem;
+}
+.booking-section .agenda-block .agenda-controls .agenda-text {
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  font-weight: 600;
+  letter-spacing: 0.25rem;
+  color: rgb(var(--color-red-medium));
 }
 .booking-section .map_image-block {
   grid-area: map_image-block;
@@ -653,7 +756,7 @@ main {
   padding: 0 3.75rem;
 }
 .discover-section .block {
-  padding: 0.625rem;
+  padding: 1.875rem;
 }
 .discover-section .discover-block {
   display: flex;
@@ -798,7 +901,6 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 3.125rem 0 3.125rem 3.125rem;
 }
 .media-section .media-title,
 .media-section .media-link {
@@ -819,19 +921,20 @@ main {
 .media-section .media-title {
   flex-direction: column;
   gap: 1.375rem;
-  padding-bottom: 3.125rem;
+  padding: 3.75rem;
 }
 .media-section .media-link {
-  padding-top: 3.125rem;
+  padding: 3.75rem;
 }
 .media-section .media-link svg {
   max-height: 0.9375rem;
 }
 .media-section .media-gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   overflow-x: scroll;
+  padding: 3.75rem 0 3.75rem 3.75rem;
 }
 .media-section .media-gallery .block {
   aspect-ratio: 1;
@@ -865,11 +968,13 @@ main {
   background-color: rgb(var(--color-teal-medium));
   color: white;
 }
-.media-section .media-gallery .document-block2 {
+.media-section .media-gallery .document-block2,
+.media-section .media-gallery .document-block3 {
   background-color: rgb(var(--color-gray-light));
   color: black;
 }
-.media-section .media-gallery .document-block2 .block-bottom {
+.media-section .media-gallery .document-block2 .block-bottom,
+.media-section .media-gallery .document-block3 .block-bottom {
   color: rgb(var(--color-teal-medium));
 }
 .media-section .media-gallery .podcast-block1 {
@@ -881,30 +986,30 @@ main {
 }
 
 @media (min-width: 64em) {
-  .media-section {
-    padding: 12.5rem 0 12.5rem 12.5rem;
-  }
   .media-section .media-title {
-    padding-bottom: 9.375rem;
+    padding: 6.25rem 7.5rem;
+  }
+  .media-section .media-gallery {
+    padding: 3.125rem 7.5rem;
   }
   .media-section .media-link {
-    padding-top: 6.25rem;
+    padding: 3.125rem 7.5rem;
   }
 }
 .information-background {
   position: absolute;
   z-index: -1;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   width: 100%;
   height: 100%;
 }
 
 .information-section {
   position: relative;
+  padding: 0 3.75rem;
   display: grid;
-  grid-template: "information-text-block" 1fr "information-block" 1fr "information-block-footer" 0.5fr "." 1fr/1fr;
-  padding: 0 7.5rem;
+  grid-template: "information-text-block" 1fr "information-block" 1fr "information-block-footer" 0.5fr "." 1fr "logo" 0.5fr "nav" 0.5fr "contact" 1fr "follow" 1fr "boom" 1fr "agency" 1fr/1fr;
 }
 .information-section .information-text-block {
   grid-area: information-text-block;
@@ -942,6 +1047,19 @@ main {
   font-size: 1rem;
   letter-spacing: 0.1875rem;
   line-height: 1.875rem;
+  padding-bottom: 1.875rem;
+}
+.information-section .information-block .information-nav ul li[aria-current=true] {
+  position: relative;
+}
+.information-section .information-block .information-nav ul li[aria-current=true]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1.875rem;
+  width: 100%;
+  height: 0.1875rem;
+  background-color: rgb(var(--color-teal-medium));
 }
 .information-section .information-block .information-hours-tab {
   padding: 1.875rem;
@@ -984,16 +1102,18 @@ main {
   border-top: solid 1px rgba(0, 0, 0, 0.5);
 }
 .information-section .information-footer ul li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  gap: 0.9375rem;
   padding: 1.875rem;
   font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0.1875rem;
   line-height: 1.875rem;
+}
+.information-section .information-footer ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9375rem;
 }
 .information-section .information-footer ul li:not(:last-child) {
   border-bottom: solid 1px rgba(0, 0, 0, 0.5);
@@ -1005,10 +1125,177 @@ main {
 .information-section .information-footer ul .information-site {
   color: rgb(var(--color-teal-medium));
 }
+.information-section .footer-logo {
+  grid-area: logo;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1.25rem;
+}
+.information-section .footer-nav {
+  grid-area: nav;
+  background-color: rgb(var(--color-gray-light));
+  border: solid 0.6px rgba(0, 0, 0, 0.1);
+  border-top: none;
+}
+.information-section .footer-nav ul {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 3.125rem 1.25rem 3.125rem;
+  gap: 1.875rem;
+}
+.information-section .footer-nav ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.information-section .footer-nav .footer-language_selector {
+  gap: 0.625rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.25rem;
+  padding: 0.625rem;
+}
+.information-section .footer-nav .footer-language_selector svg {
+  width: 0.0625rem;
+}
+.information-section .footer-nav .footer-language_selector a.selected {
+  font-weight: 700;
+}
+.information-section .footer-nav .footer-search {
+  color: black;
+  letter-spacing: 0.125rem;
+  position: relative;
+  min-width: 9.375rem;
+  cursor: pointer;
+}
+.information-section .footer-nav .footer-search label {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  letter-spacing: 0.125rem;
+  opacity: 0.5;
+  cursor: pointer;
+  pointer-events: none;
+}
+.information-section .footer-nav .footer-search input {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background-color: rgb(var(--color-gray-light));
+  border-bottom: solid 1px #1e1e1e;
+  padding: 0.625rem 0;
+}
+.information-section .footer-nav .footer-search input:focus {
+  outline: none;
+}
+.information-section .footer-nav .footer-search .search-icon {
+  position: absolute;
+  right: 0;
+}
+.information-section .footer-contact,
+.information-section .footer-follow {
+  background-color: rgb(var(--color-gray-light));
+  color: rgb(var(--color-red-medium));
+  border: solid 0.6px rgba(0, 0, 0, 0.1);
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.information-section .footer-contact h4,
+.information-section .footer-follow h4 {
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  letter-spacing: 0.1875rem;
+  font-weight: 600;
+}
+.information-section .footer-contact span,
+.information-section .footer-follow span {
+  font-weight: 1.25rem;
+  line-height: 1.875rem;
+  font-weight: 700;
+}
+.information-section .footer-contact {
+  grid-area: contact;
+  border-right: none;
+}
+.information-section .footer-follow {
+  grid-area: follow;
+}
+.information-section .footer-follow .follow-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9375rem;
+}
+.information-section .footer-boom {
+  grid-area: boom;
+  background-color: rgb(var(--color-gray-light));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.875rem;
+  gap: 1.875rem;
+  border: solid 0.6px rgba(0, 0, 0, 0.1);
+  border-top: none;
+}
+.information-section .footer-boom p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.1875rem;
+  font-weight: 600;
+}
+.information-section .footer-agencies {
+  grid-area: agency;
+  background-color: rgb(var(--color-gray-light));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.875rem;
+  border: solid 0.6px rgba(0, 0, 0, 0.1);
+  border-top: none;
+  border-left: none;
+}
+.information-section .footer-agencies p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.1875rem;
+  font-weight: 600;
+  max-width: 12.5rem;
+}
+.information-section .footer-left,
+.information-section .footer-right {
+  background-color: rgb(var(--color-gray-light));
+}
+.information-section .footer-left {
+  grid-area: left;
+}
+.information-section .footer-right {
+  grid-area: right;
+}
 
+@media (min-width: 40em) {
+  .information-background {
+    height: auto;
+  }
+}
+@media (min-width: 48em) {
+  .information-section .footer-nav .footer-search {
+    min-width: 18.75rem;
+  }
+}
+@media (min-width: 64em) {
+  .information-section {
+    padding: 0;
+  }
+}
 @media (min-width: 80em) {
   .information-section {
-    grid-template: "information-text-block information-text-block information-block information-block information-block information-block" 1fr "information-text-block information-text-block information-block information-block information-block information-block" 1fr ". . information-block-footer information-block-footer information-block-footer information-block-footer" 0.5fr ". . . . . ." 3fr "logo logo . . . ." 0.5fr "logo logo nav nav nav nav" 0.5fr "logo logo contact contact follow follow" 1fr "boom boom agency agency agency agency" 1fr/1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template: ". information-text-block information-text-block information-block information-block information-block information-block ." 1fr ". information-text-block information-text-block information-block information-block information-block information-block ." 1fr ". . . information-block-footer information-block-footer information-block-footer information-block-footer ." 0.5fr ". . . . . . . ." 2fr ". logo logo . . . . ." 0.5fr "left logo logo nav nav nav nav right" 0.5fr "left logo logo contact contact follow follow right" 1fr "left boom boom agency agency agency agency right" 1fr/120px 1fr 1fr 1fr 1fr 1fr 1fr 120px;
   }
   .information-section .information-text-block {
     aspect-ratio: 1;
@@ -1025,5 +1312,15 @@ main {
   .information-section .information-footer ul li:not(:last-child) {
     border-bottom: none;
     border-right: solid 1px rgba(0, 0, 0, 0.5);
+  }
+  .information-section .footer-logo {
+    aspect-ratio: 1;
+  }
+  .information-section .footer-nav ul {
+    padding: 0 2.5rem 1.25rem 2.5rem;
+    gap: 9.375rem;
+  }
+  .information-section .footer-nav .footer-search {
+    min-width: 25rem;
   }
 }

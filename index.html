@@ -17,10 +17,12 @@
 			<nav class="header-nav">
 				<ul>
 					<li class="header-language_selector"
-						><a>FR</a><img src="/dist/svgs/line.svg" /><a>EN</a></li
+						><a class="selected" aria-selected="true" href="/fr">FR</a
+						><img src="/dist/svgs/line.svg" />
+						<a aria-selected="false" href="/en">EN</a></li
 					>
 					<li class="header-search"
-						><img src="/dist/svgs/magnifyer.svg" />RECHERCHER</li
+						><a><img src="/dist/svgs/magnifyer.svg" />RECHERCHER</a></li
 					>
 					<li class="header-login"
 						><img src="/dist/svgs/lock.svg" /><a
@@ -32,12 +34,84 @@
 				</ul>
 			</nav>
 		</header>
-		<div class="sidemenu">
-			<ul>
-				<li class="burger-btn"><img src="/dist/svgs/burger.svg" /></li>
-				<li class="ticket-btn"><img src="/dist/svgs/ticket.svg" /></li>
-				<li class="people-btn"><img src="/dist/svgs/people.svg" /></li>
-			</ul>
+		<div class="popin js-popin" data-open="false">
+			<div class="popin-menu js-popin-menu" aria-hidden="true">
+				<div class="left-menu js-left-menu">
+					<nav>
+						<ul>
+							<li class="js-left-menu-title"><a>Titre 1</a></li>
+							<li class="js-left-menu-title"><a>Titre 2</a></li>
+							<li class="js-left-menu-title"><a>Titre 3</a></li>
+							<li class="js-left-menu-title"><a>Titre 4</a></li>
+							<li class="js-left-menu-title"><a>Titre 5</a></li>
+							<li class="js-left-menu-title"><a>Titre 6</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="main-menu js-main-menu">
+					<nav class="vertical-menu">
+						<ul>
+							<li class="js-vertical-menu-title"><a>Titre 1</a></li>
+							<li class="js-vertical-menu-title"><a>Titre 2</a></li>
+							<li class="js-vertical-menu-title"><a>Titre 3</a></li>
+							<li class="js-vertical-menu-title"><a>Titre 4</a></li>
+						</ul>
+					</nav>
+					<nav class="bottom-menu">
+						<ul>
+							<li class="js-bottom-menu-title"><a>LIEN 1</a></li>
+							<li class="js-bottom-menu-title"><a>LIEN 2</a></li>
+							<li class="js-bottom-menu-title"><a>LIEN 3</a></li>
+							<li class="js-bottom-menu-title"><a>CONTACT</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="sidemenu">
+				<ul>
+					<li class="burger-btn js-burger"
+						><div class="sidemenu-btn">
+							<svg
+								width="21"
+								height="18"
+								viewBox="0 0 21 18"
+								fill="inherit"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									class="ico-burger-top"
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M0.0999756 1.0001C0.0999756 0.503041 0.502919 0.100098 0.999976 0.100098H19.6603C20.1574 0.100098 20.5603 0.503041 20.5603 1.0001C20.5603 1.49715 20.1574 1.9001 19.6603 1.9001H0.999976C0.502919 1.9001 0.0999756 1.49715 0.0999756 1.0001Z"
+									fill="inherit"
+								/>
+								<path
+									class="ico-burger-middle"
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M0.0999756 8.77524C0.0999756 8.27819 0.502919 7.87524 0.999976 7.87524H19.6603C20.1574 7.87524 20.5603 8.27819 20.5603 8.77524C20.5603 9.2723 20.1574 9.67524 19.6603 9.67524H0.999976C0.502919 9.67524 0.0999756 9.2723 0.0999756 8.77524Z"
+									fill="inherit"
+								/>
+								<path
+									class="ico-burger-bottom"
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M0.0999756 16.5504C0.0999756 16.0533 0.502919 15.6504 0.999976 15.6504H19.6603C20.1574 15.6504 20.5603 16.0533 20.5603 16.5504C20.5603 17.0474 20.1574 17.4504 19.6603 17.4504H0.999976C0.502919 17.4504 0.0999756 17.0474 0.0999756 16.5504Z"
+									fill="inherit"
+								/>
+							</svg> </div
+					></li>
+					<li class="ticket-btn"
+						><a class="sidemenu-btn" href="/booking"
+							><img src="/dist/svgs/ticket.svg" /> </a
+					></li>
+					<li class="people-btn"
+						><a class="sidemenu-btn" href="/login"
+							><img src="/dist/svgs/people.svg"
+						/></a>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<main>
 			<section class="hero-section">
@@ -81,30 +155,133 @@
 						>Lorem ipsum dolor sit amet consectetur. Id turpis neque neque vel.
 						Faucibus sit orci.</p
 					>
-					<img class="ico-arrow" src="/dist/svgs/arrow.svg" />
+					<a href="/reservation"
+						><img class="ico-arrow" src="/dist/svgs/arrow.svg"
+					/></a>
 				</div>
 				<div class="side_image-block block">
 					<img src="dist/images/sideimage.png" alt="" />
 				</div>
-				<div class="agenda_portrait-block block">
-					<img src="dist/images/portrait.jpg" />
+				<div class="agenda_portrait-block block" aria-current="true">
+					<div class="agenda-carousel-image js-carousel-image">
+						<img
+							class="js-img"
+							src="dist/images/portrait.jpg"
+							data-index="1"
+							aria-current="true"
+						/>
+						<img
+							class="js-img"
+							src="dist/images/portrait.jpg"
+							data-index="2"
+							aria-current="false"
+						/>
+						<img
+							class="js-img"
+							src="dist/images/portrait.jpg"
+							data-index="3"
+							aria-current="false"
+						/>
+					</div>
 				</div>
 				<div class="agenda-block block">
-					<div class="agenda-date">
-						<img class="ico-calendar" src="/dist/svgs/calendar.svg" alt="" />
-						<span class="event-date">10 nov. 2022</span>
-					</div>
-					<div class="agenda-event">
-						<p class="event-description"
-							>Lorem ipsum dolor sit amet consectetur. Aenean a nullam.</p
+					<div class="agenda-carousel js-carousel-event">
+						<div
+							class="agenda-date-block js-event"
+							data-index="1"
+							aria-current="true"
 						>
-						<span class="event-target">Tout public, gratuit</span>
-					</div>
-					<div>
-						<div>
-							<span>AGENDA</span>
-							<img src="dist/svgs/arrow.svg" alt="" />
-						</div>
+							<div class="agenda-date">
+								<img
+									class="ico-calendar"
+									src="/dist/svgs/calendar.svg"
+									alt=""
+								/>
+								<span class="event-date">10 nov. 2022</span>
+							</div>
+							<div class="agenda-event">
+								<p class="event-description"
+									>Lorem ipsum dolor sit amet consectetur. Aenean a nullam.</p
+								>
+								<span class="event-target">Tout public, gratuit</span>
+							</div></div
+						>
+						<div
+							class="agenda-date-block js-event"
+							data-index="2"
+							aria-current="false"
+						>
+							<div class="agenda-date">
+								<img
+									class="ico-calendar"
+									src="/dist/svgs/calendar.svg"
+									alt=""
+								/>
+								<span class="event-date">10 nov. 2022</span>
+							</div>
+							<div class="agenda-event">
+								<p class="event-description"
+									>Lorem ipsum dolor sit amet consectetur. Aenean a nullam.</p
+								>
+								<span class="event-target">Tout public, gratuit</span>
+							</div></div
+						>
+						<div
+							class="agenda-date-block js-event"
+							data-index="3"
+							aria-current="false"
+						>
+							<div class="agenda-date">
+								<img
+									class="ico-calendar"
+									src="/dist/svgs/calendar.svg"
+									alt=""
+								/>
+								<span class="event-date">10 nov. 2022</span>
+							</div>
+							<div class="agenda-event">
+								<p class="event-description"
+									>Lorem ipsum dolor sit amet consectetur. Aenean a nullam.</p
+								>
+								<span class="event-target">Tout public, gratuit</span>
+							</div></div
+						></div
+					>
+					<div class="agenda-controls">
+						<form class="agenda-radio js-carousel-controls">
+							<input
+								type="radio"
+								name="carousel"
+								class="js-radio"
+								value="1"
+								checked
+							/>
+							<input type="radio" name="carousel" class="js-radio" value="2" />
+							<input type="radio" name="carousel" class="js-radio" value="3" />
+						</form>
+						<a class="agenda-link"
+							><span class="agenda-text">AGENDA</span>
+							<svg
+								width="27"
+								height="19"
+								viewBox="0 0 27 19"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M18.4528 17.9811L26 9.49057L18.4528 1"
+									stroke="#BE352E"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M26 9.4906L1 9.4906"
+									stroke="#BE352E"
+									stroke-width="2"
+									stroke-linecap="round"
+								/></svg
+						></a>
 					</div>
 				</div>
 				<div class="map_image-block block">
@@ -139,10 +316,14 @@
 				>
 				<div class="list-block block">
 					<ul>
-						<li>Une cité vivante</li>
-						<li><img src="dist/svgs/arrow.svg" /></li>
-						<li>Les protagonistes</li>
-						<li><img src="dist/svgs/arrow.svg" /></li>
+						<li><a>Une cité vivante</a></li>
+						<li
+							><a><img src="dist/svgs/arrow.svg" /></a
+						></li>
+						<li><a>Les protagonistes</a></li>
+						<li
+							><a><img src="dist/svgs/arrow.svg" /></a
+						></li>
 					</ul>
 				</div>
 				<div class="information-block block">
@@ -262,7 +443,7 @@
 							</svg>
 							<h2>Titre du document</h2>
 						</div>
-						<div class="block-bottom">
+						<a class="block-bottom">
 							<span>PDF (6 Mo)</span>
 							<svg
 								width="28"
@@ -284,7 +465,7 @@
 									fill="white"
 								/>
 							</svg>
-						</div>
+						</a>
 					</div>
 					<div class="podcast-block1 block">
 						<div class="block-title">
@@ -326,7 +507,7 @@
 							</svg>
 							<h1>Podcast à découvrir sans plus attendre </h1>
 						</div>
-						<div class="block-bottom"
+						<a class="block-bottom"
 							><svg
 								width="27"
 								height="19"
@@ -348,7 +529,7 @@
 									stroke-linecap="round"
 								/>
 							</svg>
-						</div>
+						</a>
 					</div>
 					<div class="gallery-image1 image-block">
 						<img src="dist/images/gallery1.png" alt="" />
@@ -395,7 +576,7 @@
 								>Lorem ipsum dolor sit amet consectetur. Mauris scelerisque.</h1
 							>
 						</div>
-						<div class="block-bottom"
+						<a class="block-bottom"
 							><svg
 								width="27"
 								height="19"
@@ -417,7 +598,10 @@
 									stroke-linecap="round"
 								/>
 							</svg>
-						</div>
+						</a>
+					</div>
+					<div class="gallery-image4 image-block">
+						<img src="dist/images/gallery2.png" alt="" />
 					</div>
 					<div class="document-block2 block">
 						<div class="block-title">
@@ -443,7 +627,7 @@
 							</svg>
 							<h2>Dossier complet à télécharger</h2>
 						</div>
-						<div class="block-bottom">
+						<a class="block-bottom">
 							<span>PDF (6 Mo)</span>
 							<svg
 								width="28"
@@ -465,7 +649,7 @@
 									fill="#399CA2"
 								/>
 							</svg>
-						</div>
+						</a>
 					</div>
 					<div class="gallery-image2 image-block">
 						<img src="dist/images/gallery2.png" alt="" />
@@ -494,7 +678,7 @@
 							</svg>
 							<h2>Titre du document</h2>
 						</div>
-						<div class="block-bottom">
+						<a class="block-bottom">
 							<span>PDF (6 Mo)</span>
 							<svg
 								width="28"
@@ -516,13 +700,61 @@
 									fill="#399CA2"
 								/>
 							</svg>
-						</div>
+						</a>
 					</div>
 					<div class="gallery-image3 image-block">
 						<img src="dist/images/gallery3.png" alt="" />
 					</div>
+					<div class="document-block1 block">
+						<div class="block-title">
+							<svg
+								width="20"
+								height="26"
+								viewBox="0 0 20 26"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M0 1C0 0.447715 0.447715 0 1 0H10.9C11.4523 0 11.9 0.447715 11.9 1C11.9 1.55228 11.4523 2 10.9 2H2V23.9999H18V9.09998C18 8.5477 18.4477 8.09998 19 8.09998C19.5522 8.09998 20 8.5477 20 9.09998V24.9999C20 25.5522 19.5522 25.9999 19 25.9999H1C0.447715 25.9999 0 25.5522 0 24.9999V1Z"
+									fill="white"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M10.5174 0.0761497C10.8911 -0.0786313 11.3212 0.00692445 11.6072 0.292922L19.7072 8.3929C19.9932 8.6789 20.0787 9.10902 19.9239 9.48269C19.7692 9.85637 19.4045 10.1 19.0001 10.1H10.9001C10.3478 10.1 9.90009 9.65229 9.90009 9.10001V1.00003C9.90009 0.595567 10.1437 0.230931 10.5174 0.0761497ZM11.9001 3.41424V8.10001H16.5859L11.9001 3.41424Z"
+									fill="white"
+								/>
+							</svg>
+							<h2>Titre du document</h2>
+						</div>
+						<a class="block-bottom">
+							<span>PDF (6 Mo)</span>
+							<svg
+								width="28"
+								height="30"
+								viewBox="0 0 28 30"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M8.07555 1C8.07555 0.447715 8.52326 0 9.07555 0H18.9247C19.477 0 19.9247 0.447715 19.9247 1V12.6765H24.3304C24.7365 12.6765 25.1023 12.9221 25.256 13.298C25.4097 13.6739 25.3209 14.1055 25.0311 14.39L14.7008 24.535C14.3118 24.917 13.6885 24.917 13.2995 24.535L2.96918 14.39C2.67943 14.1055 2.59054 13.6739 2.74425 13.298C2.89796 12.9221 3.26374 12.6765 3.66985 12.6765H8.07555V1ZM10.0755 2V13.6765C10.0755 14.2288 9.62783 14.6765 9.07555 14.6765H6.11531L14.0001 22.4199L21.885 14.6765H18.9247C18.3725 14.6765 17.9247 14.2288 17.9247 13.6765V2H10.0755Z"
+									fill="white"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M0.878021 28.9629C0.878021 28.4106 1.32574 27.9629 1.87802 27.9629H26.1222C26.6745 27.9629 27.1222 28.4106 27.1222 28.9629C27.1222 29.5152 26.6745 29.9629 26.1222 29.9629H1.87802C1.32574 29.9629 0.878021 29.5152 0.878021 28.9629Z"
+									fill="white"
+								/>
+							</svg>
+						</a>
+					</div>
 				</div>
-				<div class="media-link"
+				<a class="media-link"
 					><h3>ACCÈS À LA MÉDIATHÈQUE</h3
 					><svg
 						width="27"
@@ -545,7 +777,7 @@
 							stroke-linecap="round"
 						/>
 					</svg>
-				</div>
+				</a>
 			</section>
 			<section class="information-section">
 				<img class="information-background" src="dist/images/information.jpg" />
@@ -581,10 +813,10 @@
 				<div class="information-block">
 					<nav class="information-nav">
 						<ul>
-							<li class="information-hours">HORAIRES</li>
+							<li class="information-hours" aria-current="true">HORAIRES</li>
 							<li class="information-access">PLAN D'ACCÈS</li>
 						</ul>
-						<hr />
+						<hr class="information-separator" />
 					</nav>
 					<div class="information-hours-tab">
 						<p
@@ -623,245 +855,277 @@
 				<div class="information-footer">
 					<ul>
 						<li class="information-contact"
-							>NOUS CONTACTER<svg
-								width="18"
-								height="14"
-								viewBox="0 0 18 14"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M0.399994 0.999902C0.399994 0.668532 0.668623 0.399902 0.999994 0.399902H16.8945C17.2259 0.399902 17.4945 0.668532 17.4945 0.999902V12.5559C17.4945 12.8872 17.2259 13.1559 16.8945 13.1559H0.999994C0.668623 13.1559 0.399994 12.8872 0.399994 12.5559V0.999902ZM1.59999 1.5999V11.9559H16.2945V1.5999H1.59999Z"
-									fill="#BE352E"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M0.560767 0.591153C0.786515 0.348574 1.16617 0.334929 1.40875 0.560676L8.94726 7.5761L16.4858 0.560676C16.7283 0.334929 17.108 0.348574 17.3337 0.591153C17.5595 0.833732 17.5458 1.21339 17.3033 1.43913L9.35601 8.83495C9.12566 9.04931 8.76885 9.04931 8.5385 8.83495L0.591245 1.43913C0.348665 1.21339 0.33502 0.833732 0.560767 0.591153Z"
-									fill="#BE352E"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M6.96235 5.86772C7.2097 6.08822 7.23146 6.4675 7.01095 6.71485L1.44787 12.9551C1.22736 13.2024 0.848082 13.2242 0.600732 13.0037C0.353382 12.7832 0.331623 12.4039 0.552133 12.1565L6.11521 5.91631C6.33572 5.66896 6.715 5.64721 6.96235 5.86772Z"
-									fill="#BE352E"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M10.9323 5.86772C11.1797 5.64721 11.559 5.66896 11.7795 5.91631L17.3426 12.1565C17.5631 12.4039 17.5413 12.7832 17.294 13.0037C17.0466 13.2242 16.6673 13.2024 16.4468 12.9551L10.8837 6.71485C10.6632 6.4675 10.685 6.08822 10.9323 5.86772Z"
-									fill="#BE352E"
-								/>
-							</svg>
+							><a
+								>NOUS CONTACTER<svg
+									width="18"
+									height="14"
+									viewBox="0 0 18 14"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M0.399994 0.999902C0.399994 0.668532 0.668623 0.399902 0.999994 0.399902H16.8945C17.2259 0.399902 17.4945 0.668532 17.4945 0.999902V12.5559C17.4945 12.8872 17.2259 13.1559 16.8945 13.1559H0.999994C0.668623 13.1559 0.399994 12.8872 0.399994 12.5559V0.999902ZM1.59999 1.5999V11.9559H16.2945V1.5999H1.59999Z"
+										fill="#BE352E"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M0.560767 0.591153C0.786515 0.348574 1.16617 0.334929 1.40875 0.560676L8.94726 7.5761L16.4858 0.560676C16.7283 0.334929 17.108 0.348574 17.3337 0.591153C17.5595 0.833732 17.5458 1.21339 17.3033 1.43913L9.35601 8.83495C9.12566 9.04931 8.76885 9.04931 8.5385 8.83495L0.591245 1.43913C0.348665 1.21339 0.33502 0.833732 0.560767 0.591153Z"
+										fill="#BE352E"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M6.96235 5.86772C7.2097 6.08822 7.23146 6.4675 7.01095 6.71485L1.44787 12.9551C1.22736 13.2024 0.848082 13.2242 0.600732 13.0037C0.353382 12.7832 0.331623 12.4039 0.552133 12.1565L6.11521 5.91631C6.33572 5.66896 6.715 5.64721 6.96235 5.86772Z"
+										fill="#BE352E"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M10.9323 5.86772C11.1797 5.64721 11.559 5.66896 11.7795 5.91631L17.3426 12.1565C17.5631 12.4039 17.5413 12.7832 17.294 13.0037C17.0466 13.2242 16.6673 13.2024 16.4468 12.9551L10.8837 6.71485C10.6632 6.4675 10.685 6.08822 10.9323 5.86772Z"
+										fill="#BE352E"
+									/></svg
+							></a>
 						</li>
 						<li class="information-telephone"
-							>01 02 03 04 05<svg
-								width="18"
-								height="19"
-								viewBox="0 0 18 19"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M2.74974 0.399902C2.90895 0.399878 3.06164 0.463129 3.17419 0.575728L6.97092 4.37406C7.14246 4.54568 7.19375 4.80373 7.10087 5.02791C7.06421 5.11638 7.00795 5.1927 6.93834 5.25268L5.18366 7.00918C5.13595 7.05695 5.11465 7.13099 5.13239 7.20075C5.13236 7.20064 5.13242 7.20086 5.13239 7.20075L5.19058 7.42676C5.53289 8.75188 6.22406 9.96012 7.19067 10.9277C8.20718 11.9453 9.4878 12.6566 10.8872 12.9797L10.8906 12.9805C10.9514 12.995 11.0219 12.9763 11.0707 12.9275L12.8674 11.1289C12.9799 11.0162 13.1327 10.9529 13.2919 10.9529C13.4511 10.9529 13.6038 11.0162 13.7164 11.1289L17.721 15.1377C17.9551 15.372 17.9551 15.7515 17.721 15.9858L16.5473 17.1607C15.8303 17.8757 14.8407 18.2502 13.8307 18.1885C13.8304 18.1885 13.8309 18.1885 13.8307 18.1885L13.6289 18.1769L13.6259 18.1767C10.1152 17.957 6.80477 16.461 4.316 13.9697C1.77599 11.427 0.274506 8.02805 0.103799 4.43648M5.69718 4.7972L2.74997 1.84874L1.98273 2.61677C1.51804 3.08195 1.27082 3.72211 1.30241 4.37881C1.45889 7.67277 2.83592 10.7901 5.16497 13.1216C7.44689 15.4059 10.4816 16.7773 13.6994 16.9789C13.6999 16.979 13.7004 16.979 13.7009 16.979L13.9011 16.9905L13.9034 16.9907C14.5706 17.0316 15.2254 16.7841 15.6998 16.3112C15.6997 16.3113 15.6999 16.3111 15.6998 16.3112L16.4485 15.5618L13.2919 12.4019L11.9196 13.7756C11.581 14.1145 11.0868 14.2597 10.6155 14.1486M2.74974 0.399902C2.59054 0.399927 2.43787 0.463225 2.32535 0.575859L2.74974 0.399902ZM2.32535 0.575859L1.13376 1.76869L2.32535 0.575859ZM1.13376 1.76869C0.430317 2.47286 0.0560606 3.44207 0.103799 4.43648L1.13376 1.76869Z"
-									fill="#399CA2"
-								/>
-							</svg>
+							><a
+								>01 02 03 04 05<svg
+									width="18"
+									height="19"
+									viewBox="0 0 18 19"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M2.74974 0.399902C2.90895 0.399878 3.06164 0.463129 3.17419 0.575728L6.97092 4.37406C7.14246 4.54568 7.19375 4.80373 7.10087 5.02791C7.06421 5.11638 7.00795 5.1927 6.93834 5.25268L5.18366 7.00918C5.13595 7.05695 5.11465 7.13099 5.13239 7.20075C5.13236 7.20064 5.13242 7.20086 5.13239 7.20075L5.19058 7.42676C5.53289 8.75188 6.22406 9.96012 7.19067 10.9277C8.20718 11.9453 9.4878 12.6566 10.8872 12.9797L10.8906 12.9805C10.9514 12.995 11.0219 12.9763 11.0707 12.9275L12.8674 11.1289C12.9799 11.0162 13.1327 10.9529 13.2919 10.9529C13.4511 10.9529 13.6038 11.0162 13.7164 11.1289L17.721 15.1377C17.9551 15.372 17.9551 15.7515 17.721 15.9858L16.5473 17.1607C15.8303 17.8757 14.8407 18.2502 13.8307 18.1885C13.8304 18.1885 13.8309 18.1885 13.8307 18.1885L13.6289 18.1769L13.6259 18.1767C10.1152 17.957 6.80477 16.461 4.316 13.9697C1.77599 11.427 0.274506 8.02805 0.103799 4.43648M5.69718 4.7972L2.74997 1.84874L1.98273 2.61677C1.51804 3.08195 1.27082 3.72211 1.30241 4.37881C1.45889 7.67277 2.83592 10.7901 5.16497 13.1216C7.44689 15.4059 10.4816 16.7773 13.6994 16.9789C13.6999 16.979 13.7004 16.979 13.7009 16.979L13.9011 16.9905L13.9034 16.9907C14.5706 17.0316 15.2254 16.7841 15.6998 16.3112C15.6997 16.3113 15.6999 16.3111 15.6998 16.3112L16.4485 15.5618L13.2919 12.4019L11.9196 13.7756C11.581 14.1145 11.0868 14.2597 10.6155 14.1486M2.74974 0.399902C2.59054 0.399927 2.43787 0.463225 2.32535 0.575859L2.74974 0.399902ZM2.32535 0.575859L1.13376 1.76869L2.32535 0.575859ZM1.13376 1.76869C0.430317 2.47286 0.0560606 3.44207 0.103799 4.43648L1.13376 1.76869Z"
+										fill="#399CA2"
+									/></svg
+							></a>
 						</li>
 						<li class="information-site"
-							>SITE.FR<svg
-								width="19"
-								height="19"
-								viewBox="0 0 19 19"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M9.52444 1.5999C5.14791 1.5999 1.60002 5.14778 1.60002 9.52432C1.60002 13.9008 5.14791 17.4487 9.52444 17.4487C13.901 17.4487 17.4489 13.9008 17.4489 9.52432C17.4489 5.14778 13.901 1.5999 9.52444 1.5999ZM0.400024 9.52432C0.400024 4.48504 4.48516 0.399902 9.52444 0.399902C14.5637 0.399902 18.6489 4.48504 18.6489 9.52432C18.6489 14.5636 14.5637 18.6487 9.52444 18.6487C4.48516 18.6487 0.400024 14.5636 0.400024 9.52432Z"
-									fill="#399CA2"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M6.67252 3.77837C5.90597 5.21804 5.4135 7.24841 5.4135 9.52432C5.4135 11.8002 5.90597 13.8306 6.67252 15.2703C7.45295 16.736 8.42877 17.4487 9.35163 17.4487C9.683 17.4487 9.95163 17.7174 9.95163 18.0487C9.95163 18.3801 9.683 18.6487 9.35163 18.6487C7.76876 18.6487 6.47552 17.4536 5.61331 15.8342C4.73723 14.1889 4.2135 11.957 4.2135 9.52432C4.2135 7.09161 4.73723 4.85977 5.61331 3.21439C6.47552 1.59506 7.76876 0.399902 9.35163 0.399902C9.683 0.399902 9.95163 0.668532 9.95163 0.999902C9.95163 1.33127 9.683 1.5999 9.35163 1.5999C8.42877 1.5999 7.45295 2.31264 6.67252 3.77837Z"
-									fill="#399CA2"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M9.09723 0.999902C9.09723 0.668532 9.36586 0.399902 9.69723 0.399902C11.2801 0.399902 12.5733 1.59506 13.4355 3.21439C14.3116 4.85977 14.8354 7.09161 14.8354 9.52432C14.8354 11.957 14.3116 14.1889 13.4355 15.8342C12.5733 17.4536 11.2801 18.6487 9.69723 18.6487C9.36586 18.6487 9.09723 18.3801 9.09723 18.0487C9.09723 17.7174 9.36586 17.4487 9.69723 17.4487C10.6201 17.4487 11.5959 16.736 12.3763 15.2703C13.1429 13.8306 13.6354 11.8002 13.6354 9.52432C13.6354 7.24841 13.1429 5.21804 12.3763 3.77837C11.5959 2.31264 10.6201 1.5999 9.69723 1.5999C9.36586 1.5999 9.09723 1.33127 9.09723 0.999902Z"
-									fill="#399CA2"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M2.65467 3.69903C2.82924 3.41737 3.19909 3.33056 3.48075 3.50513C4.92711 4.40159 7.17035 4.99887 9.63648 4.99887C12.1025 4.99887 14.2749 4.42177 15.722 3.54852C16.0058 3.37731 16.3745 3.46852 16.5457 3.75223C16.717 4.03595 16.6258 4.40473 16.342 4.57594C14.6665 5.58703 12.2671 6.19887 9.63648 6.19887C7.00591 6.19887 4.52932 5.56684 2.84857 4.52511C2.56691 4.35054 2.4801 3.98069 2.65467 3.69903Z"
-									fill="#399CA2"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M9.63648 14.0523C7.13097 14.0523 4.92778 14.6492 3.48075 15.546C3.19909 15.7206 2.82924 15.6338 2.65467 15.3521C2.4801 15.0705 2.56691 14.7006 2.84857 14.5261C4.52865 13.4847 6.96453 12.8523 9.63648 12.8523C12.2261 12.8523 14.5914 13.4459 16.2623 14.4292C16.5479 14.5973 16.6432 14.965 16.4751 15.2506C16.307 15.5362 15.9393 15.6315 15.6537 15.4634C14.2065 14.6118 12.0628 14.0523 9.63648 14.0523Z"
-									fill="#399CA2"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M9.5245 0.399902C9.85587 0.399902 10.1245 0.668532 10.1245 0.999902V18.0487C10.1245 18.3801 9.85587 18.6487 9.5245 18.6487C9.19313 18.6487 8.9245 18.3801 8.9245 18.0487V0.999902C8.9245 0.668532 9.19313 0.399902 9.5245 0.399902Z"
-									fill="#399CA2"
-								/>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M0.400024 9.52432C0.400024 9.19295 0.668654 8.92432 1.00002 8.92432H18.0489C18.3802 8.92432 18.6489 9.19295 18.6489 9.52432C18.6489 9.85569 18.3802 10.1243 18.0489 10.1243H1.00002C0.668654 10.1243 0.400024 9.85569 0.400024 9.52432Z"
-									fill="#399CA2"
-								/>
-							</svg>
+							><a
+								>SITE.FR<svg
+									width="19"
+									height="19"
+									viewBox="0 0 19 19"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M9.52444 1.5999C5.14791 1.5999 1.60002 5.14778 1.60002 9.52432C1.60002 13.9008 5.14791 17.4487 9.52444 17.4487C13.901 17.4487 17.4489 13.9008 17.4489 9.52432C17.4489 5.14778 13.901 1.5999 9.52444 1.5999ZM0.400024 9.52432C0.400024 4.48504 4.48516 0.399902 9.52444 0.399902C14.5637 0.399902 18.6489 4.48504 18.6489 9.52432C18.6489 14.5636 14.5637 18.6487 9.52444 18.6487C4.48516 18.6487 0.400024 14.5636 0.400024 9.52432Z"
+										fill="#399CA2"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M6.67252 3.77837C5.90597 5.21804 5.4135 7.24841 5.4135 9.52432C5.4135 11.8002 5.90597 13.8306 6.67252 15.2703C7.45295 16.736 8.42877 17.4487 9.35163 17.4487C9.683 17.4487 9.95163 17.7174 9.95163 18.0487C9.95163 18.3801 9.683 18.6487 9.35163 18.6487C7.76876 18.6487 6.47552 17.4536 5.61331 15.8342C4.73723 14.1889 4.2135 11.957 4.2135 9.52432C4.2135 7.09161 4.73723 4.85977 5.61331 3.21439C6.47552 1.59506 7.76876 0.399902 9.35163 0.399902C9.683 0.399902 9.95163 0.668532 9.95163 0.999902C9.95163 1.33127 9.683 1.5999 9.35163 1.5999C8.42877 1.5999 7.45295 2.31264 6.67252 3.77837Z"
+										fill="#399CA2"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M9.09723 0.999902C9.09723 0.668532 9.36586 0.399902 9.69723 0.399902C11.2801 0.399902 12.5733 1.59506 13.4355 3.21439C14.3116 4.85977 14.8354 7.09161 14.8354 9.52432C14.8354 11.957 14.3116 14.1889 13.4355 15.8342C12.5733 17.4536 11.2801 18.6487 9.69723 18.6487C9.36586 18.6487 9.09723 18.3801 9.09723 18.0487C9.09723 17.7174 9.36586 17.4487 9.69723 17.4487C10.6201 17.4487 11.5959 16.736 12.3763 15.2703C13.1429 13.8306 13.6354 11.8002 13.6354 9.52432C13.6354 7.24841 13.1429 5.21804 12.3763 3.77837C11.5959 2.31264 10.6201 1.5999 9.69723 1.5999C9.36586 1.5999 9.09723 1.33127 9.09723 0.999902Z"
+										fill="#399CA2"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M2.65467 3.69903C2.82924 3.41737 3.19909 3.33056 3.48075 3.50513C4.92711 4.40159 7.17035 4.99887 9.63648 4.99887C12.1025 4.99887 14.2749 4.42177 15.722 3.54852C16.0058 3.37731 16.3745 3.46852 16.5457 3.75223C16.717 4.03595 16.6258 4.40473 16.342 4.57594C14.6665 5.58703 12.2671 6.19887 9.63648 6.19887C7.00591 6.19887 4.52932 5.56684 2.84857 4.52511C2.56691 4.35054 2.4801 3.98069 2.65467 3.69903Z"
+										fill="#399CA2"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M9.63648 14.0523C7.13097 14.0523 4.92778 14.6492 3.48075 15.546C3.19909 15.7206 2.82924 15.6338 2.65467 15.3521C2.4801 15.0705 2.56691 14.7006 2.84857 14.5261C4.52865 13.4847 6.96453 12.8523 9.63648 12.8523C12.2261 12.8523 14.5914 13.4459 16.2623 14.4292C16.5479 14.5973 16.6432 14.965 16.4751 15.2506C16.307 15.5362 15.9393 15.6315 15.6537 15.4634C14.2065 14.6118 12.0628 14.0523 9.63648 14.0523Z"
+										fill="#399CA2"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M9.5245 0.399902C9.85587 0.399902 10.1245 0.668532 10.1245 0.999902V18.0487C10.1245 18.3801 9.85587 18.6487 9.5245 18.6487C9.19313 18.6487 8.9245 18.3801 8.9245 18.0487V0.999902C8.9245 0.668532 9.19313 0.399902 9.5245 0.399902Z"
+										fill="#399CA2"
+									/>
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M0.400024 9.52432C0.400024 9.19295 0.668654 8.92432 1.00002 8.92432H18.0489C18.3802 8.92432 18.6489 9.19295 18.6489 9.52432C18.6489 9.85569 18.3802 10.1243 18.0489 10.1243H1.00002C0.668654 10.1243 0.400024 9.85569 0.400024 9.52432Z"
+										fill="#399CA2"
+									/></svg
+							></a>
 						</li>
 					</ul>
 				</div>
+				<div class="footer-logo">
+					<img src="dist/images/andlogo_black.png" alt="Logo de And" />
+				</div>
+				<nav class="footer-nav">
+					<ul>
+						<li class="footer-search">
+							<input
+								class="js-search"
+								type="text"
+								id="footer-search"
+								name="footer-search"
+							/>
+							<label class="js-label" for="footer-search">RECHERCHER</label>
+							<svg
+								class="search-icon"
+								width="18"
+								height="18"
+								viewBox="0 0 18 18"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M7.20859 13.4172C10.6375 13.4172 13.4172 10.6375 13.4172 7.20859C13.4172 3.77968 10.6375 1 7.20859 1C3.77968 1 1 3.77968 1 7.20859C1 10.6375 3.77968 13.4172 7.20859 13.4172Z"
+									stroke="black"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+								<path
+									d="M11.9854 11.5068L17 16.5215"
+									stroke="black"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</li>
+						<li class="footer-language_selector"
+							><a class="selected" aria-selected="true">FR</a
+							><svg
+								width="1"
+								height="17"
+								viewBox="0 0 1 17"
+								fill="black"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line
+									x1="0.25"
+									y1="1.09279e-08"
+									x2="0.249999"
+									y2="17"
+									stroke="black"
+									stroke-width="0.5"
+								/>
+							</svg>
+							<a>EN</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="footer-contact">
+					<h4>CONTACTEZ-NOUS</h4>
+					<span>05 57 93 65 40</span>
+				</div>
+				<div class="footer-follow">
+					<h4>SUIVEZ-NOUS</h4>
+					<ul class="follow-icons"
+						><li
+							><a
+								><svg
+									width="28"
+									height="28"
+									viewBox="0 0 28 28"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M19.759 27.4698H7.71078C3.45913 27.4698 0 24.0106 0 19.759V7.71078C0 3.45913 3.45913 0 7.71078 0H19.759C24.0106 0 27.4698 3.45913 27.4698 7.71078V19.759C27.4698 24.0106 24.0106 27.4698 19.759 27.4698ZM7.71078 2.48759C4.82973 2.48759 2.48759 4.83159 2.48759 7.71078V19.759C2.48759 22.64 4.83159 24.9822 7.71078 24.9822H19.759C22.64 24.9822 24.9822 22.6382 24.9822 19.759V7.71078C24.9822 4.82973 22.6382 2.48759 19.759 2.48759H7.71078Z"
+										fill="#BE352E"
+									/>
+									<path
+										d="M13.7357 20.8684C9.80295 20.8684 6.60303 17.6685 6.60303 13.7357C6.60303 9.80295 9.80295 6.60303 13.7357 6.60303C17.6685 6.60303 20.8684 9.80295 20.8684 13.7357C20.8684 17.6685 17.6685 20.8684 13.7357 20.8684ZM13.7357 9.08875C11.1736 9.08875 9.08875 11.1736 9.08875 13.7357C9.08875 16.2979 11.1736 18.3827 13.7357 18.3827C16.2979 18.3827 18.3827 16.2979 18.3827 13.7357C18.3827 11.1736 16.2979 9.08875 13.7357 9.08875Z"
+										fill="#BE352E"
+									/>
+									<path
+										d="M22.7557 6.36835C22.7557 7.27649 22.0192 8.01307 21.111 8.01307C20.2029 8.01307 19.4663 7.27649 19.4663 6.36835C19.4663 5.46021 20.2029 4.72363 21.111 4.72363C22.0192 4.72363 22.7557 5.46021 22.7557 6.36835Z"
+										fill="#BE352E"
+									/></svg></a
+						></li>
+						<li
+							><a>
+								<svg
+									width="15"
+									height="27"
+									viewBox="0 0 15 27"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M9.64911 27V15.0141H13.6963L14.3881 9.8378H9.64911V6.23237C9.64911 5.65134 10.1128 5.17629 10.6841 5.17629H14.4697V0H10.6841C7.31578 0 4.57624 2.79539 4.57624 6.23237V9.8378H0.469727V15.0141H4.57624V27H9.64911Z"
+										fill="#BE352E"
+									/></svg
+							></a>
+						</li>
+						<li
+							><a>
+								<svg
+									width="31"
+									height="25"
+									viewBox="0 0 31 25"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M0.469727 22.1707C13.7193 30.1957 28.0157 19.9725 27.4922 6.25247C28.5448 5.44653 29.541 4.3885 30.4697 3.02299C29.4435 3.43551 28.4191 3.72198 27.3947 3.78882C28.6236 2.87212 29.3947 1.77398 29.6198 0.458123C28.4435 1.23732 27.1864 1.8179 25.7924 2.02416C21.3346 -2.546 14.1958 1.1743 15.1283 7.68482C9.89562 7.31814 5.74552 4.992 2.49787 1.02533C0.878732 4.2319 1.45284 7.05077 4.03633 9.51632C3.15453 9.42083 2.35528 9.14964 1.61607 8.75049C1.45847 12.0411 3.44909 13.8497 6.22958 15.1101C5.41907 15.2648 4.60106 15.2916 3.77554 15.2094C4.42657 17.8908 6.49224 19.1532 9.37029 19.6058C6.83746 21.5424 3.83746 22.3139 0.471603 22.1707H0.469727Z"
+										fill="#BE352E"
+									/></svg
+							></a>
+						</li>
+						<li
+							><a>
+								<svg
+									width="35"
+									height="25"
+									viewBox="0 0 35 25"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M34.2164 5.60871C34.0193 2.83882 31.9079 0.630849 29.2434 0.409425C26.6273 0.192179 22.8307 0 17.4697 0C12.1087 0 8.31418 0.192179 5.69601 0.409425C3.0336 0.630849 0.922175 2.83882 0.723098 5.60871C0.570271 7.74566 0.469727 10.0831 0.469727 12.5C0.469727 14.9169 0.570271 17.2543 0.723098 19.3913C0.920164 22.1612 3.03159 24.3692 5.69601 24.5906C8.31217 24.8078 12.1087 25 17.4697 25C22.8307 25 26.6273 24.8078 29.2434 24.5906C31.9079 24.3692 34.0193 22.1612 34.2164 19.3913C34.3692 17.2543 34.4697 14.9169 34.4697 12.5C34.4697 10.0831 34.3692 7.74566 34.2164 5.60871ZM14.194 17.9186V7.08347L22.885 12.523L14.194 17.9165V17.9186Z"
+										fill="#BE352E"
+									/></svg
+							></a>
+						</li>
+					</ul>
+				</div>
+				<div class="footer-boom">
+					<p>UNE AGENCE DU GROUPE</p>
+					<a href="https://www.booom-factory.fr/"
+						><img src="dist/images/boomfactory.png" alt=""
+					/></a>
+				</div>
+				<div class="footer-agencies">
+					<p>LES AUTRES AGENCES DU GROUPE</p>
+					<a href="https://agencemba.fr/"
+						><img src="dist/images/agencemba.png" alt=""
+					/></a>
+					<a href="https://superfull.fr/"
+						><img src="dist/images/superfull.png" alt=""
+					/></a>
+				</div>
+				<div class="footer-left"></div>
+				<div class="footer-right"></div>
 			</section>
 		</main>
 		<footer class="page-footer">
-			<div class="footer-logo">
-				<img src="dist/images/andlogo_black.png" alt="Logo de And" />
-			</div>
-			<nav class="footer-nav">
-				<ul>
-					<li class="footer-search">
-						<input type="text" id="footer-search" name="footer-search" />
-						<label for="footer-search">RECHERCHER</label>
-						<svg
-							class="search-icon"
-							width="18"
-							height="18"
-							viewBox="0 0 18 18"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M7.20859 13.4172C10.6375 13.4172 13.4172 10.6375 13.4172 7.20859C13.4172 3.77968 10.6375 1 7.20859 1C3.77968 1 1 3.77968 1 7.20859C1 10.6375 3.77968 13.4172 7.20859 13.4172Z"
-								stroke="black"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-							<path
-								d="M11.9854 11.5068L17 16.5215"
-								stroke="black"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-						</svg>
-					</li>
-					<li class="footer-language_selector"
-						><a>FR</a
-						><svg
-							width="1"
-							height="17"
-							viewBox="0 0 1 17"
-							fill="black"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<line
-								x1="0.25"
-								y1="1.09279e-08"
-								x2="0.249999"
-								y2="17"
-								stroke="black"
-								stroke-width="0.5"
-							/>
-						</svg>
-						<a>EN</a>
-					</li>
+			<nav>
+				<ul class="footer-pagelinks">
+					<li><a>Mentions légales</a></li>
+					<li><a>Crédits photographiques</a></li>
+					<li><a>Accès restreint</a></li>
+					<li><a>Accessibilité</a></li>
+					<li><a>Conditions générales de vente</a></li>
+					<li><a>Plan du site</a></li>
 				</ul>
 			</nav>
-			<div class="footer-contact">
-				<h4>CONTACTEZ-NOUS</h4>
-				<span>05 57 93 65 40</span>
-			</div>
-			<div class="footer-follow">
-				<h4>SUIVEZ-NOUS</h4>
-				<ul class="follow-icons"
-					><li
-						><svg
-							width="28"
-							height="28"
-							viewBox="0 0 28 28"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M19.759 27.4698H7.71078C3.45913 27.4698 0 24.0106 0 19.759V7.71078C0 3.45913 3.45913 0 7.71078 0H19.759C24.0106 0 27.4698 3.45913 27.4698 7.71078V19.759C27.4698 24.0106 24.0106 27.4698 19.759 27.4698ZM7.71078 2.48759C4.82973 2.48759 2.48759 4.83159 2.48759 7.71078V19.759C2.48759 22.64 4.83159 24.9822 7.71078 24.9822H19.759C22.64 24.9822 24.9822 22.6382 24.9822 19.759V7.71078C24.9822 4.82973 22.6382 2.48759 19.759 2.48759H7.71078Z"
-								fill="#BE352E"
-							/>
-							<path
-								d="M13.7357 20.8684C9.80295 20.8684 6.60303 17.6685 6.60303 13.7357C6.60303 9.80295 9.80295 6.60303 13.7357 6.60303C17.6685 6.60303 20.8684 9.80295 20.8684 13.7357C20.8684 17.6685 17.6685 20.8684 13.7357 20.8684ZM13.7357 9.08875C11.1736 9.08875 9.08875 11.1736 9.08875 13.7357C9.08875 16.2979 11.1736 18.3827 13.7357 18.3827C16.2979 18.3827 18.3827 16.2979 18.3827 13.7357C18.3827 11.1736 16.2979 9.08875 13.7357 9.08875Z"
-								fill="#BE352E"
-							/>
-							<path
-								d="M22.7557 6.36835C22.7557 7.27649 22.0192 8.01307 21.111 8.01307C20.2029 8.01307 19.4663 7.27649 19.4663 6.36835C19.4663 5.46021 20.2029 4.72363 21.111 4.72363C22.0192 4.72363 22.7557 5.46021 22.7557 6.36835Z"
-								fill="#BE352E"
-							/></svg
-					></li>
-					<li>
-						<svg
-							width="15"
-							height="27"
-							viewBox="0 0 15 27"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M9.64911 27V15.0141H13.6963L14.3881 9.8378H9.64911V6.23237C9.64911 5.65134 10.1128 5.17629 10.6841 5.17629H14.4697V0H10.6841C7.31578 0 4.57624 2.79539 4.57624 6.23237V9.8378H0.469727V15.0141H4.57624V27H9.64911Z"
-								fill="#BE352E"
-							/>
-						</svg>
-					</li>
-					<li>
-						<svg
-							width="31"
-							height="25"
-							viewBox="0 0 31 25"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M0.469727 22.1707C13.7193 30.1957 28.0157 19.9725 27.4922 6.25247C28.5448 5.44653 29.541 4.3885 30.4697 3.02299C29.4435 3.43551 28.4191 3.72198 27.3947 3.78882C28.6236 2.87212 29.3947 1.77398 29.6198 0.458123C28.4435 1.23732 27.1864 1.8179 25.7924 2.02416C21.3346 -2.546 14.1958 1.1743 15.1283 7.68482C9.89562 7.31814 5.74552 4.992 2.49787 1.02533C0.878732 4.2319 1.45284 7.05077 4.03633 9.51632C3.15453 9.42083 2.35528 9.14964 1.61607 8.75049C1.45847 12.0411 3.44909 13.8497 6.22958 15.1101C5.41907 15.2648 4.60106 15.2916 3.77554 15.2094C4.42657 17.8908 6.49224 19.1532 9.37029 19.6058C6.83746 21.5424 3.83746 22.3139 0.471603 22.1707H0.469727Z"
-								fill="#BE352E"
-							/>
-						</svg>
-					</li>
-					<li>
-						<svg
-							width="35"
-							height="25"
-							viewBox="0 0 35 25"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M34.2164 5.60871C34.0193 2.83882 31.9079 0.630849 29.2434 0.409425C26.6273 0.192179 22.8307 0 17.4697 0C12.1087 0 8.31418 0.192179 5.69601 0.409425C3.0336 0.630849 0.922175 2.83882 0.723098 5.60871C0.570271 7.74566 0.469727 10.0831 0.469727 12.5C0.469727 14.9169 0.570271 17.2543 0.723098 19.3913C0.920164 22.1612 3.03159 24.3692 5.69601 24.5906C8.31217 24.8078 12.1087 25 17.4697 25C22.8307 25 26.6273 24.8078 29.2434 24.5906C31.9079 24.3692 34.0193 22.1612 34.2164 19.3913C34.3692 17.2543 34.4697 14.9169 34.4697 12.5C34.4697 10.0831 34.3692 7.74566 34.2164 5.60871ZM14.194 17.9186V7.08347L22.885 12.523L14.194 17.9165V17.9186Z"
-								fill="#BE352E"
-							/>
-						</svg>
-					</li>
-				</ul>
-			</div>
-			<div class="footer-boom">
-				<p>UNE AGENCE DU GROUPE</p>
-				<img src="dist/images/boomfactory.png" alt="" />
-			</div>
-			<div class="footer-agencies">
-				<p>LES AUTRES AGENCES DU GROUPE</p>
-				<img src="dist/images/agencemba.png" alt="" />
-				<img src="dist/images/superfull.png" alt="" />
-			</div>
+			<div class="footer-copyright"><span>© Copyright - 2023</span></div>
 		</footer>
 	</body>
+	<script src="dist/js/app.min.js"></script>
 </html>

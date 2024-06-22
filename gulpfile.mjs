@@ -1,6 +1,5 @@
 import gulp from 'gulp';
-import uglify from 'gulp-uglify';
-import concat from 'gulp-concat';
+import webpack from 'webpack-stream';
 import eslint from 'gulp-eslint';
 import imagemin from 'gulp-imagemin';
 import mozjpeg from 'imagemin-mozjpeg';
@@ -24,26 +23,44 @@ gulp.task('lint', () => {
 // Minification du JS et concaténation des fichiers JS
 gulp.task('scripts', () => {
 	return gulp
-		.src('src/js/**/*.js')
-		.pipe(concat('app.min.js'))
-		.pipe(uglify())
+		.src('src/js/main.js') // Your main entry file
+		.pipe(
+			webpack({
+				mode: 'production',
+				output: {
+					filename: 'app.min.js',
+				},
+				module: {
+					rules: [
+						{
+							test: /\.js$/,
+							exclude: /node_modules/,
+							use: {
+								loader: 'babel-loader',
+								options: {
+									presets: ['@babel/preset-env'],
+								},
+							},
+						},
+					],
+				},
+			})
+		)
 		.pipe(gulp.dest('dist/js'))
 		.pipe(browserSync.stream());
 });
 
 // Optimization des images
 gulp.task('images', () => {
-	return (
-		gulp
-			.src('src/images/*', { encoding: false })
-			// .pipe(
-			// 	imagemin([
-			// 		mozjpeg({ quality: 75, progressive: true }),
-			// 		pngquant({ quality: [0.6, 0.8] }),
-			// 	])
-			// )
-			.pipe(gulp.dest('dist/images'))
-	);
+	return gulp
+		.src('src/images/*', { encoding: false })
+		.pipe(
+			imagemin([
+				mozjpeg({ quality: 75, progressive: true }),
+				pngquant({ quality: [0.6, 0.8] }),
+			])
+		)
+		.pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('svgs', () => {

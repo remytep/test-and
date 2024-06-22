@@ -2,20 +2,28 @@
 	position: absolute;
 	z-index: -1;
 	object-fit: cover;
-	object-position: center;
+	object-position: top;
 	width: 100%;
 	height: 100%;
 }
 
 .information-section {
 	position: relative;
+	padding: 0 toRem(60px);
+
 	display: grid;
 	grid-template:
 		'information-text-block' 1fr
 		'information-block' 1fr
 		'information-block-footer' 0.5fr
-		'.' 1fr / 1fr;
-	padding: 0 toRem(120px);
+		'.' 1fr
+		'logo' 0.5fr
+		'nav' 0.5fr
+		'contact' 1fr
+		'follow' 1fr
+		'boom' 1fr
+		'agency' 1fr
+		/ 1fr;
 	.information-text-block {
 		grid-area: information-text-block;
 		background-color: rgb(var(--color-teal-medium));
@@ -50,6 +58,19 @@
 				font-size: toRem(16px);
 				letter-spacing: toRem(3px);
 				line-height: toRem(30px);
+				padding-bottom: toRem(30px);
+				li[aria-current='true'] {
+					position: relative;
+					&::after {
+						content: '';
+						position: absolute;
+						left: 0;
+						bottom: toRem(-30px);
+						width: 100%;
+						height: toRem(3px);
+						background-color: rgb(var(--color-teal-medium));
+					}
+				}
 			}
 		}
 		.information-hours-tab {
@@ -92,11 +113,13 @@
 			align-items: center;
 			border-top: solid 1px rgb(0, 0, 0, 0.5);
 			li {
-				display: flex;
-				justify-content: center;
-				align-items: center;
+				a {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: toRem(15px);
+				}
 				width: 100%;
-				gap: toRem(15px);
 				padding: toRem(30px);
 				font-weight: 600;
 				font-size: toRem(14px);
@@ -115,20 +138,192 @@
 			}
 		}
 	}
+	.footer-logo {
+		grid-area: logo;
+		background-color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: toRem(40px) toRem(20px);
+	}
+
+	.footer-nav {
+		grid-area: nav;
+		background-color: rgb(var(--color-gray-light));
+		border: solid 0.6px rgb(0, 0, 0, 0.1);
+		border-top: none;
+		ul {
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			padding: 0 toRem(50px) toRem(20px) toRem(50px);
+			gap: toRem(30px);
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+		.footer-language_selector {
+			gap: toRem(10px);
+			font-size: toRem(13px);
+			letter-spacing: toRem(4px);
+			padding: toRem(10px);
+			svg {
+				width: toRem(1px);
+			}
+			a.selected {
+				font-weight: 700;
+			}
+		}
+		.footer-search {
+			color: black;
+			letter-spacing: toRem(2px);
+			position: relative;
+			min-width: toRem(150px);
+			cursor: pointer;
+			label {
+				position: absolute;
+				z-index: 0;
+				left: 0;
+				letter-spacing: toRem(2px);
+				opacity: 0.5;
+				cursor: pointer;
+				pointer-events: none;
+			}
+			input {
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				background-color: rgb(var(--color-gray-light));
+				border-bottom: solid 1px #1e1e1e;
+				padding: toRem(10px) 0;
+				&:focus {
+					outline: none;
+				}
+			}
+			.search-icon {
+				position: absolute;
+				right: 0;
+			}
+		}
+	}
+	.footer-contact,
+	.footer-follow {
+		background-color: rgb(var(--color-gray-light));
+		color: rgb(var(--color-red-medium));
+		border: solid 0.6px rgb(0, 0, 0, 0.1);
+		border-top: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		h4 {
+			font-size: toRem(14px);
+			line-height: toRem(30px);
+			letter-spacing: toRem(3px);
+			font-weight: 600;
+		}
+		span {
+			font-weight: toRem(20px);
+			line-height: toRem(30px);
+			font-weight: 700;
+		}
+	}
+	.footer-contact {
+		grid-area: contact;
+		border-right: none;
+	}
+
+	.footer-follow {
+		grid-area: follow;
+		.follow-icons {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: toRem(15px);
+		}
+	}
+	.footer-boom {
+		grid-area: boom;
+		background-color: rgb(var(--color-gray-light));
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: toRem(30px);
+		gap: toRem(30px);
+		p {
+			font-size: toRem(14px);
+			line-height: toRem(20px);
+			letter-spacing: toRem(3px);
+			font-weight: 600;
+		}
+		border: solid 0.6px rgb(0, 0, 0, 0.1);
+		border-top: none;
+	}
+	.footer-agencies {
+		grid-area: agency;
+		background-color: rgb(var(--color-gray-light));
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: toRem(30px);
+		p {
+			font-size: toRem(14px);
+			line-height: toRem(20px);
+			letter-spacing: toRem(3px);
+			font-weight: 600;
+			max-width: toRem(200px);
+		}
+		border: solid 0.6px rgb(0, 0, 0, 0.1);
+		border-top: none;
+		border-left: none;
+	}
+	.footer-left,
+	.footer-right {
+		background-color: rgb(var(--color-gray-light));
+	}
+	.footer-left {
+		grid-area: left;
+	}
+	.footer-right {
+		grid-area: right;
+	}
+}
+@include breakpoint(sm) {
+	.information-background {
+		height: auto;
+	}
+}
+@include breakpoint(md) {
+	.information-section {
+		.footer-nav {
+			.footer-search {
+				min-width: toRem(300px);
+			}
+		}
+	}
+}
+
+@include breakpoint(lg) {
+	.information-section {
+		padding: 0;
+	}
 }
 
 @include breakpoint(xl) {
 	.information-section {
 		grid-template:
-			'information-text-block information-text-block information-block information-block information-block information-block' 1fr
-			'information-text-block information-text-block information-block information-block information-block information-block' 1fr
-			'. . information-block-footer information-block-footer information-block-footer information-block-footer' 0.5fr
-			'. . . . . .' 3fr
-			'logo logo . . . .' 0.5fr
-			'logo logo nav nav nav nav' 0.5fr
-			'logo logo contact contact follow follow' 1fr
-			'boom boom agency agency agency agency' 1fr
-			/ 1fr 1fr 1fr 1fr 1fr 1fr;
+			'. information-text-block information-text-block information-block information-block information-block information-block .' 1fr
+			'. information-text-block information-text-block information-block information-block information-block information-block .' 1fr
+			'. . . information-block-footer information-block-footer information-block-footer information-block-footer .' 0.5fr
+			'. . . . . . . .' 2fr
+			'. logo logo . . . . .' 0.5fr
+			'left logo logo nav nav nav nav right' 0.5fr
+			'left logo logo contact contact follow follow right' 1fr
+			'left boom boom agency agency agency agency right' 1fr
+			/ 120px 1fr 1fr 1fr 1fr 1fr 1fr 120px;
 		.information-text-block {
 			aspect-ratio: 1;
 		}
@@ -146,6 +341,18 @@
 						border-right: solid 1px rgb(0, 0, 0, 0.5);
 					}
 				}
+			}
+		}
+		.footer-logo {
+			aspect-ratio: 1;
+		}
+		.footer-nav {
+			ul {
+				padding: 0 toRem(40px) toRem(20px) toRem(40px);
+				gap: toRem(150px);
+			}
+			.footer-search {
+				min-width: toRem(400px);
 			}
 		}
 	}
