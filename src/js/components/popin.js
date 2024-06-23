@@ -5,7 +5,6 @@ export default class Popin {
 		this.$el = _$el;
 		this.$menuBtn = document.getElementsByClassName('js-burger')[0];
 		this.$popinMenu = document.getElementsByClassName('js-popin-menu')[0];
-
 		this.init();
 	}
 	init() {
@@ -27,7 +26,6 @@ export default class Popin {
 	_hideMenu() {
 		anime({
 			targets: this.$popinMenu,
-			opacity: 0,
 			scaleX: 0,
 			duration: 0,
 		});
@@ -36,7 +34,7 @@ export default class Popin {
 		anime
 			.timeline({
 				targets: this.$popinMenu,
-				easing: 'easeOutQuint',
+				easing: 'linear',
 				begin: () => {
 					this.$menuBtn.style.pointerEvents = 'none';
 				},
@@ -47,15 +45,59 @@ export default class Popin {
 					this.$popinMenu.setAttribute('aria-hidden', false);
 				},
 			})
-			.add({ scaleX: [0, 1], opacity: [0, 1], duration: 500 })
+			.add(
+				{
+					targets: this.$menuBtn,
+					backgroundColor: '#ffffff',
+					duration: 250,
+				},
+				0
+			)
+			.add(
+				{
+					targets: '.sidemenu-btn svg',
+					fill: '#399CA2',
+					duration: 500,
+				},
+				0
+			)
+			.add(
+				{
+					targets: '.ico-burger-middle',
+					scaleX: [1, 0],
+					duration: 250,
+				},
+				0
+			)
+			.add(
+				{
+					targets: '.ico-burger-top',
+					rotate: [0, '45deg'],
+					translateY: [0, 7.8],
+					duration: 250,
+				},
+				250
+			)
+
+			.add(
+				{
+					targets: '.ico-burger-bottom',
+					rotate: [0, '-45deg'],
+					translateY: [0, -7.8],
+					duration: 250,
+				},
+				250
+			)
+			.add({ scaleX: [0, 1], duration: 500 }, 250)
 			.add(
 				{
 					targets: '.js-left-menu-title',
 					translateY: ['100%', 0],
 					opacity: [0, 1],
 					delay: anime.stagger(100),
+					duration: 250,
 				},
-				500
+				750
 			)
 			.add(
 				{
@@ -63,8 +105,9 @@ export default class Popin {
 					translateY: ['100%', 0],
 					opacity: [0, 1],
 					delay: anime.stagger(100),
+					duration: 250,
 				},
-				500
+				750
 			)
 			.add(
 				{
@@ -72,15 +115,16 @@ export default class Popin {
 					translateY: ['100%', 0],
 					opacity: [0, 1],
 					delay: anime.stagger(100),
+					duration: 250,
 				},
-				500
+				750
 			);
 	}
 	_closeMenu() {
 		anime
 			.timeline({
 				targets: this.$popinMenu,
-				easing: 'easeInQuint',
+				easing: 'linear',
 				begin: () => {
 					this.$menuBtn.style.pointerEvents = 'none';
 				},
@@ -97,6 +141,7 @@ export default class Popin {
 					translateY: [0, '100%'],
 					opacity: [1, 0],
 					delay: anime.stagger(100),
+					duration: 250,
 				},
 				0
 			)
@@ -106,6 +151,7 @@ export default class Popin {
 					translateY: [0, '100%'],
 					opacity: [1, 0],
 					delay: anime.stagger(100),
+					duration: 250,
 				},
 				0
 			)
@@ -115,9 +161,52 @@ export default class Popin {
 					translateY: [0, '100%'],
 					opacity: [1, 0],
 					delay: anime.stagger(100),
+					duration: 250,
 				},
 				0
 			)
-			.add({ scaleX: [1, 0], opacity: [1, 0], duration: 500 }, 500);
+			.add({ scaleX: [1, 0], duration: 500 }, 250)
+			.add(
+				{
+					targets: this.$menuBtn,
+					backgroundColor: 'rgb(0,0,0,0)',
+					duration: 250,
+				},
+				750
+			)
+			.add(
+				{
+					targets: '.sidemenu-btn svg',
+					fill: 'white',
+					duration: 250,
+				},
+				750
+			)
+			.add(
+				{
+					targets: '.ico-burger-top',
+					translateY: [7.8, 0],
+					rotate: ['45deg', 0],
+					duration: 250,
+				},
+				750
+			)
+			.add(
+				{
+					targets: '.ico-burger-bottom',
+					translateY: [-7.8, 0],
+					rotate: ['-45deg', 0],
+					duration: 250,
+				},
+				750
+			)
+			.add(
+				{
+					targets: '.ico-burger-middle',
+					scaleX: [0, 1],
+					duration: 250,
+				},
+				750
+			);
 	}
 }

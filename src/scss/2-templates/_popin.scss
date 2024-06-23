@@ -9,52 +9,9 @@
 		.sidemenu {
 			pointer-events: all;
 		}
-		.burger-btn {
-			transition: all 0.5s linear;
-			.sidemenu-btn {
-				svg {
-					fill: white;
-				}
-				.ico-burger-top {
-					transition: all 0.5s linear;
-					transform-origin: 0 50%;
-					transform: rotate(0deg) translateX(0);
-				}
-				.ico-burger-middle {
-					opacity: 1;
-				}
-				.ico-burger-bottom {
-					transition: all 0.5s linear;
-					transform-origin: 0 50%;
-					transform: rotate(0deg) translateX(0);
-				}
-			}
-		}
 	}
 	&[data-open='true'] {
 		pointer-events: all;
-		.burger-btn {
-			transition: all 0.5s linear;
-			background-color: white;
-			.sidemenu-btn {
-				svg {
-					fill: rgb(var(--color-teal-medium));
-				}
-				.ico-burger-top {
-					transition: all 0.5s linear;
-					transform-origin: 0 50%;
-					transform: rotate(45deg) translateX(-10%);
-				}
-				.ico-burger-middle {
-					opacity: 0;
-				}
-				.ico-burger-bottom {
-					transition: all 0.5s linear;
-					transform-origin: 0 50%;
-					transform: rotate(-45deg) translateX(-10%);
-				}
-			}
-		}
 	}
 }
 

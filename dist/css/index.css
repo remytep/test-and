@@ -79,7 +79,6 @@ main {
 
 .page-header {
   width: 100vw;
-  height: 100%;
   z-index: 10;
   padding: 0px 3.75rem;
   position: absolute;
@@ -90,7 +89,6 @@ main {
   color: white;
 }
 .page-header .header-nav ul {
-  height: 100%;
   padding: 1.5625rem 0rem;
   display: flex;
   align-items: center;
@@ -159,47 +157,8 @@ main {
 .popin[data-open=false] .sidemenu {
   pointer-events: all;
 }
-.popin[data-open=false] .burger-btn {
-  transition: all 0.5s linear;
-}
-.popin[data-open=false] .burger-btn .sidemenu-btn svg {
-  fill: white;
-}
-.popin[data-open=false] .burger-btn .sidemenu-btn .ico-burger-top {
-  transition: all 0.5s linear;
-  transform-origin: 0 50%;
-  transform: rotate(0deg) translateX(0);
-}
-.popin[data-open=false] .burger-btn .sidemenu-btn .ico-burger-middle {
-  opacity: 1;
-}
-.popin[data-open=false] .burger-btn .sidemenu-btn .ico-burger-bottom {
-  transition: all 0.5s linear;
-  transform-origin: 0 50%;
-  transform: rotate(0deg) translateX(0);
-}
 .popin[data-open=true] {
   pointer-events: all;
-}
-.popin[data-open=true] .burger-btn {
-  transition: all 0.5s linear;
-  background-color: white;
-}
-.popin[data-open=true] .burger-btn .sidemenu-btn svg {
-  fill: rgb(var(--color-teal-medium));
-}
-.popin[data-open=true] .burger-btn .sidemenu-btn .ico-burger-top {
-  transition: all 0.5s linear;
-  transform-origin: 0 50%;
-  transform: rotate(45deg) translateX(-10%);
-}
-.popin[data-open=true] .burger-btn .sidemenu-btn .ico-burger-middle {
-  opacity: 0;
-}
-.popin[data-open=true] .burger-btn .sidemenu-btn .ico-burger-bottom {
-  transition: all 0.5s linear;
-  transform-origin: 0 50%;
-  transform: rotate(-45deg) translateX(-10%);
 }
 
 @media (min-width: 40em) {
@@ -233,9 +192,20 @@ main {
   cursor: pointer;
 }
 .sidemenu ul .burger-btn {
-  transition: all;
   border: solid 0.125rem white;
   fill: white;
+}
+.sidemenu ul .burger-btn .sidemenu-btn svg {
+  overflow: visible;
+}
+.sidemenu ul .burger-btn .sidemenu-btn svg .ico-burger-top {
+  transform-origin: 50% 50%;
+}
+.sidemenu ul .burger-btn .sidemenu-btn svg .ico-burger-middle {
+  transform-origin: 50% 50%;
+}
+.sidemenu ul .burger-btn .sidemenu-btn svg .ico-burger-bottom {
+  transform-origin: 50% 50%;
 }
 .sidemenu ul .ticket-btn {
   background-color: rgb(var(--color-teal-medium));
@@ -1067,6 +1037,9 @@ main {
   line-height: 1.875rem;
   padding-bottom: 1.875rem;
 }
+.information-section .information-block .information-nav ul li {
+  cursor: pointer;
+}
 .information-section .information-block .information-nav ul li[aria-current=true] {
   position: relative;
 }
@@ -1079,11 +1052,22 @@ main {
   height: 0.1875rem;
   background-color: rgb(var(--color-teal-medium));
 }
+.information-section .information-block .js-tab-content-container {
+  position: relative;
+}
 .information-section .information-block .information-hours-tab {
+  position: absolute;
   padding: 1.875rem;
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
+  transition: opacity 0.5s;
+}
+.information-section .information-block .information-hours-tab[aria-current=false] {
+  opacity: 0;
+}
+.information-section .information-block .information-hours-tab[aria-current=true] {
+  opacity: 1;
 }
 .information-section .information-block .information-hours-tab .reservation-link {
   max-width: 13.75rem;
@@ -1120,6 +1104,9 @@ main {
   border-top: solid 1px rgba(0, 0, 0, 0.5);
 }
 .information-section .information-footer ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 1.875rem;
   font-weight: 600;

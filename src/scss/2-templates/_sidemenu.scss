@@ -18,9 +18,22 @@
 		}
 
 		.burger-btn {
-			transition: all;
 			border: solid toRem(2px) white;
 			fill: white;
+			.sidemenu-btn {
+				svg {
+					overflow: visible;
+					.ico-burger-top {
+						transform-origin: 50% 50%;
+					}
+					.ico-burger-middle {
+						transform-origin: 50% 50%;
+					}
+					.ico-burger-bottom {
+						transform-origin: 50% 50%;
+					}
+				}
+			}
 		}
 
 		.ticket-btn {

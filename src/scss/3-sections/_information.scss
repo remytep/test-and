@@ -59,6 +59,9 @@
 				letter-spacing: toRem(3px);
 				line-height: toRem(30px);
 				padding-bottom: toRem(30px);
+				li {
+					cursor: pointer;
+				}
 				li[aria-current='true'] {
 					position: relative;
 					&::after {
@@ -73,11 +76,23 @@
 				}
 			}
 		}
+		.js-tab-content-container {
+			position: relative;
+		}
 		.information-hours-tab {
+			position: absolute;
 			padding: toRem(30px);
 			display: flex;
 			flex-direction: column;
 			gap: toRem(30px);
+			transition: opacity 0.5s;
+			&[aria-current='false'] {
+				opacity: 0;
+			}
+			&[aria-current='true'] {
+				opacity: 1;
+			}
+
 			.reservation-link {
 				max-width: toRem(220px);
 				display: flex;
@@ -113,6 +128,9 @@
 			align-items: center;
 			border-top: solid 1px rgb(0, 0, 0, 0.5);
 			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				a {
 					display: flex;
 					justify-content: center;
