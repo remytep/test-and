@@ -35,7 +35,6 @@ export default class Carousel {
 				easing: 'linear',
 				duration: 500,
 				complete: () => {
-					console.log(this.$images);
 					this.$images[this.current - 1].setAttribute('aria-current', false);
 					this.$images[_index - 1].setAttribute('aria-current', true);
 					this.$events[this.current - 1].setAttribute('aria-current', false);
